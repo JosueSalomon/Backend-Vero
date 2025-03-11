@@ -1,0 +1,23 @@
+{
+  "name": "vero-codigo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "vercel-start": "npm run build && node dist/src/index.js",
+    "dev": "nodemon dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.8",
+    "supabase": "^2.15.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
