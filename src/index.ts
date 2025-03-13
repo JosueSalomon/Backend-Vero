@@ -1,10 +1,12 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import swaggerUI from "swagger-ui-express"
+import specs from "./Utils/swagger"
 
 
 //rutass ola
-// import userRouter from './Routers/Usuario.router'
+import userRouter from './Routes/User.router'
 // import adminRouter from './Routers/Admin.router'
 // import productoRouter from './Routers/Producto.router'
 // import facturaRouter from './Routers/Factura.router'
@@ -14,13 +16,14 @@ dotenv.config();
 require('dotenv').config();
 const app: Express = express();
 const port = process.env.PORT;
+app.use("/api-docs",swaggerUI.serve, swaggerUI.setup(specs));
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Rutas
-// app.use('/user', userRouter);
+app.use('/user', userRouter);
 // app.use('/admin', adminRouter);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
