@@ -10,6 +10,7 @@ const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_1 = __importDefault(require("./Utils/swagger"));
 //rutass ola
 const User_router_1 = __importDefault(require("./Routes/User.router"));
+const Driver_routes_1 = __importDefault(require("./Routes/Driver.routes"));
 // import adminRouter from './Routers/Admin.router'
 // import productoRouter from './Routers/Producto.router'
 // import facturaRouter from './Routers/Factura.router'
@@ -24,6 +25,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 //Rutas
 app.use('/user', User_router_1.default);
+app.use('/driver', Driver_routes_1.default);
 // app.use('/admin', adminRouter);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
