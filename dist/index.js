@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_1 = __importDefault(require("./Utils/swagger"));
 //rutass ola
-// import userRouter from './Routers/Usuario.router'
+const Driver_route_1 = __importDefault(require("./Routes/Driver.route"));
 // import adminRouter from './Routers/Admin.router'
 // import productoRouter from './Routers/Producto.router'
 // import facturaRouter from './Routers/Factura.router'
@@ -16,11 +18,12 @@ dotenv_1.default.config();
 require('dotenv').config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
+app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.default));
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 //Rutas
-// app.use('/user', userRouter);
+app.use('/driver', Driver_route_1.default);
 // app.use('/admin', adminRouter);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
