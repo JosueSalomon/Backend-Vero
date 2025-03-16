@@ -6,7 +6,7 @@ import specs from "./Utils/swagger"
 
 
 //rutass ola
-import userRouter from './Routes/User.router'
+import conductorRouter from './Routes/Driver.route'
 // import adminRouter from './Routers/Admin.router'
 // import productoRouter from './Routers/Producto.router'
 // import facturaRouter from './Routers/Factura.router'
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Rutas
-app.use('/user', userRouter);
+app.use('/driver',conductorRouter)
 // app.use('/admin', adminRouter);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)

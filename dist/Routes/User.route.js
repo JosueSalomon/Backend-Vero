@@ -1,15 +1,11 @@
-import express from 'express';
-import {
-    FuncionPrueba,
-    createPrueba,
-    readPruebas,
-    readPruebaById,
-    updatePrueba,
-    deletePrueba
-} from "../Controllers/User.controller";
-
-const router = express.Router();
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const User_controller_1 = require("../Controllers/User.controller");
+const router = express_1.default.Router();
 /**
  * @swagger
  * /user/saludo:
@@ -19,8 +15,7 @@ const router = express.Router();
  *       200:
  *         description: Saludo exitoso
  */
-router.get('/saludo', FuncionPrueba);
-
+router.get('/saludo', User_controller_1.FuncionPrueba);
 /**
  * @swagger
  * /user/crear:
@@ -59,9 +54,7 @@ router.get('/saludo', FuncionPrueba);
  *       500:
  *         description: Error interno del servidor
  */
-router.post('/crear', createPrueba);
-
-
+router.post('/crear', User_controller_1.createPrueba);
 /**
  * @swagger
  * /user/get:
@@ -71,8 +64,7 @@ router.post('/crear', createPrueba);
  *       200:
  *         description: Lista de entradas de prueba
  */
-router.get("/get", readPruebas);
-
+router.get("/get", User_controller_1.readPruebas);
 /**
  * @swagger
  * /user/get/{id}:
@@ -90,7 +82,7 @@ router.get("/get", readPruebas);
  *       404:
  *         description: Entrada no encontrada
  */
-router.get("/get/:id", readPruebaById);
+router.get("/get/:id", User_controller_1.readPruebaById);
 /**
  * @swagger
  * /user/put/{id}:
@@ -138,8 +130,7 @@ router.get("/get/:id", readPruebaById);
  *       500:
  *         description: Error interno del servidor
  */
-router.put("/put/:id", updatePrueba);
-
+router.put("/put/:id", User_controller_1.updatePrueba);
 /**
  * @swagger
  * /user/del/{id}:
@@ -157,6 +148,5 @@ router.put("/put/:id", updatePrueba);
  *       404:
  *         description: Entrada no encontrada
  */
-router.delete("/del/:id", deletePrueba);
-
-export default router;
+router.delete("/del/:id", User_controller_1.deletePrueba);
+exports.default = router;
