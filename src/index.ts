@@ -7,10 +7,7 @@ import specs from "./Utils/swagger"
 
 //rutass ola
 import conductorRouter from './Routes/Driver.route'
-// import adminRouter from './Routers/Admin.router'
-// import productoRouter from './Routers/Producto.router'
-// import facturaRouter from './Routers/Factura.router'
-// import pagoRouter from './Routers/Pagos.router'
+import authRoutes from './Routes/Auth.routes'
 
 dotenv.config();
 require('dotenv').config();
@@ -23,8 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Rutas
-app.use('/driver',conductorRouter)
-// app.use('/admin', adminRouter);
+app.use('/driver',conductorRouter);
+app.use('/auth', authRoutes);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
 // app.use('/pago', pagoRouter)

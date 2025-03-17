@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegisterDriver = exports.uploadImage = void 0;
+exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const Driver_model_1 = require("../Models/Driver.model");
 function generarCodigoAleatorio() {
@@ -65,3 +65,24 @@ const RegisterDriver = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.RegisterDriver = RegisterDriver;
+const getDriverTrips = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const driverTrip = yield Driver_model_1.Driver.getDriverTrips(Number(id));
+        res.status(201).json({
+            driverTrip
+        });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.getDriverTrips = getDriverTrips;

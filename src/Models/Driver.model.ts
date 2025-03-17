@@ -1,6 +1,6 @@
 import  supabase  from '../Utils/supabase';
 import fs from 'fs';
-import Busboy from 'busboy';
+
 
 export class Driver {
     static async RegisterDriver(
@@ -72,4 +72,14 @@ export class Driver {
         };
     }
     
+    static async getDriverTrips(driverId: number){
+        const{data, error} = await supabase.rpc('p_get_driver_trips',{
+            p_driver_id: driverId
+        });
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+
 }

@@ -242,4 +242,22 @@ router.post('/upload', upload_1.default.single('file'), Driver_controller_1.uplo
  *                   example: "Error al registrar el conductor"
  */
 router.post('/sign_up', Driver_controller_1.RegisterDriver);
+/**
+ * @swagger
+ * /driver/get/{id}/trips:
+ *   get:
+ *     description: Return driver trips information.
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: Driver ID.
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Succesful.
+ *       404:
+ *         description: Error.
+ */
+router.get("/get/:id/trips", Driver_controller_1.getDriverTrips);
 exports.default = router;

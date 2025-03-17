@@ -53,5 +53,16 @@ class Driver {
             };
         });
     }
+    static getDriverTrips(driverId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_driver_trips', {
+                p_driver_id: driverId
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.Driver = Driver;
