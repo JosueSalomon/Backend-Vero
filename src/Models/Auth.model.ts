@@ -13,27 +13,27 @@ export class Auth {
         });
         
         if (!data) {
-            return "Data is null or undefined";
+            return "null";
         }
 
         if (data.code === 2) {
             return {
                 code: 2,
-                message: "User does not exist"
+                message: "Usuario no existente"
             };
         }
 
         if (data.code === 3) {
             return {
                 code: 3,
-                message: "User not validated"
+                message: "Usuario no validado"
             };
         }
 
         if (data.code === 4) {
             return {
                 code: 4,
-                message: "Invalid credentials"
+                message: "Credenciales incorrectas"
             };
         };
 
@@ -53,7 +53,7 @@ export class Auth {
         if (error instanceof Error) {
             throw new Error(error.message);
         } else {
-            throw new Error("Error desconocido");
+            throw new Error("Unknown error");
         }
         }
     }

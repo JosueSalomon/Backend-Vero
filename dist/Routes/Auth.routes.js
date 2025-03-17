@@ -36,7 +36,7 @@ const router = express_1.default.Router();
 *                 example: "p@ssw0rd"
 *     responses:
 *       201:
-*         description: Successful login.
+*         description: Login exitoso.
 *         content:
 *           application/json:
 *             schema:
@@ -60,12 +60,12 @@ const router = express_1.default.Router();
 *                       description: User type (1 = Driver, 2 = Passenger, 3 = Admin).
 *                     message:
 *                       type: string
-*                       description: Response message (e.g., 'User found successfully').
-*                       example: "User found successfully"
+*                       description: Response message 'Usuario encontrado con éxito'.
+*                       example: "Usuario encontrado con éxito"
 *                     code:
 *                       type: integer
 *                       description: Status code indicating the result.
-*                       example: "1"
+*                       example: 1
 *                     token:
 *                       type: string
 *                       description: Authentication token for the user.
@@ -80,11 +80,11 @@ const router = express_1.default.Router();
 *                 code:
 *                   type: integer
 *                   description: validation code.
-*                   example: "2"
+*                   example: 2
 *                 message:
 *                   type: string
 *                   description: User does not exist.
-*                   example: "User does not exist"
+*                   example: "Usuario no existente"
 *       3:
 *         description: User not validated.
 *         content:
@@ -95,11 +95,11 @@ const router = express_1.default.Router();
 *                 code:
 *                   type: integer
 *                   description: validation code.
-*                   example: "3"
+*                   example: 3
 *                 message:
 *                   type: string
 *                   description: User not validated.
-*                   example: "User not validated"
+*                   example: "Usuario no validado"
 *       4:
 *         description: Invalid credentials.
 *         content:
@@ -110,11 +110,11 @@ const router = express_1.default.Router();
 *                 code:
 *                   type: integer
 *                   description: validation code.
-*                   example: "4"
+*                   example: 4
 *                 message:
 *                   type: string
 *                   description: Invalid credentials.
-*                   example: "Invalid credentials"
+*                   example: "Credenciales incorrectas"
 */
 router.post('/login', Auth_controller_1.Login);
 exports.default = router;
