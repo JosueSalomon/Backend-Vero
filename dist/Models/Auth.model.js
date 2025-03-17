@@ -23,6 +23,28 @@ class Auth {
                     p_email: email,
                     p_password: password
                 });
+                if (!data) {
+                    return "Data is null or undefined";
+                }
+                if (data.code === 2) {
+                    return {
+                        code: 2,
+                        message: "User does not exist"
+                    };
+                }
+                if (data.code === 3) {
+                    return {
+                        code: 3,
+                        message: "User not validated"
+                    };
+                }
+                if (data.code === 4) {
+                    return {
+                        code: 4,
+                        message: "Invalid credentials"
+                    };
+                }
+                ;
                 if (!data || !data.user_id || !data.names || !data.email || !data.profile_img_url) {
                     console.error("Error: Insufficient data to generate the token", data);
                     return "Insufficient data to generate the token";

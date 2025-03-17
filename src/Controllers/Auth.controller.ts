@@ -6,7 +6,7 @@ export const Login = async (req: Request, res: Response) => {
     try{
             const {email, password} = req.body;
             const data = await Auth.login(email, password);
-    
+            
             res.status(201).json({
                 data
             })

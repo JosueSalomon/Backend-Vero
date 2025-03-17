@@ -244,20 +244,60 @@ router.post('/upload', upload_1.default.single('file'), Driver_controller_1.uplo
 router.post('/sign_up', Driver_controller_1.RegisterDriver);
 /**
  * @swagger
+ * tags:
+ *   - Driver
  * /driver/get/{id}/trips:
  *   get:
- *     description: Return driver trips information.
+ *     summary: Get a driver's current trips
+ *     description: Retrieves the current trips of a driver, including relevant details based on their ID.
+ *     operationId: getDriverTrips
  *     parameters:
- *       - name: id
- *         in: path
- *         description: Driver ID.
+ *       - in: path
+ *         name: id
  *         required: true
- *         type: integer
+ *         schema:
+ *           type: integer
+ *         description: The unique identifier of the driver.
  *     responses:
  *       200:
- *         description: Succesful.
- *       404:
- *         description: Error.
+ *         description: Successfully retrieved driver trip information.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 driverTrip:
+ *                   type: object
+ *                   description: Driver trip information.
+ *                   properties:
+ *                     user_name:
+ *                       type: string
+ *                       description: Driver's full name.
+ *                     start_date:
+ *                       type: string
+ *                       format: date
+ *                       description: Trip start date.
+ *                     end_date:
+ *                       type: string
+ *                       format: date
+ *                       description: End date of the trip.
+ *                     departure_point:
+ *                       type: string
+ *                       description: Departure location for daily trips.
+ *                     arrival_point:
+ *                       type: string
+ *                       description: Arrival location for daily trips.
+ *                     departure_time:
+ *                       type: string
+ *                       description: Daily departure time.
+ *                     return_time:
+ *                       type: string
+ *                       description: Daily return time.
+ *                     travel_days:
+ *                       type: array
+ *                       items:
+ *                         type: string
+ *                       description: Array of days when the driver operates (e.g., ["Monday", "Wednesday", "Friday"]).
  */
 router.get("/get/:id/trips", Driver_controller_1.getDriverTrips);
 exports.default = router;
