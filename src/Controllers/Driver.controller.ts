@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import express from 'express';
 import imagekit from '../Utils/imageKitConfig';
+import {sendVerificationEmail} from "../services/smtpService"
 import {Driver} from "../Models/Driver.model"
 
 interface MulterRequest extends Request {
@@ -70,9 +71,13 @@ export const RegisterDriver = async (req: Request, res: Response) => {
         car_img_url_2,
         car_2,
         car_img_url_3,
-        car_3
+        car_3,
+        brand,
+        year,
+        color,
+        plate
     } = req.body;
-
+    const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
     const verificationCode = generarCodigoAleatorio();
 
     try {
@@ -99,13 +104,24 @@ export const RegisterDriver = async (req: Request, res: Response) => {
             car_img_url_2,
             car_2,
             car_img_url_3,
-            car_3
+            car_3,
+            brand,
+            year,
+            color,
+            plate
         );
 
         
         res.status(200).json({
             Response,
         });
+
+        if(Number(Response.codigo ===1)){
+            console.log("Enviando correo a:", correo);
+            await sendVerificationEmail(correo, verificationCode, Description);
+            console.log("Correo enviado correctamente.");
+        }
+        console.log(Response.codigo)
     } catch (error: any) {
         console.log("Error con registro del conductor", error);
         res.status(500).json({ message: 'Error con registro del conductor', error });
@@ -134,3 +150,19 @@ export const getDriverTrips = async (req: Request, res: Response) => {
     }
 };
 
+export const correo = async (req: Request, res: Response) =>{
+    try{
+        const{correo} = req.body
+        const verificationCode = generarCodigoAleatorio();
+        const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
+
+
+        await sendVerificationEmail(correo, verificationCode, Description);
+        res.status(201).json({
+            mensaje:"Cooreo enviando con exito :3"
+        })
+    } catch(error){
+        console.log("Error ", error);
+        res.status(500).json({ message: 'Error ', error });
+    }
+}

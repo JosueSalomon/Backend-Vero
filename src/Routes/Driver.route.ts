@@ -3,7 +3,8 @@ import upload from '../Utils/upload';
 import {
     uploadImage,
     RegisterDriver,
-    getDriverTrips
+    getDriverTrips,
+    correo
 } from "../Controllers/Driver.controller";
 
 const router = express.Router();
@@ -49,6 +50,10 @@ router.post('/upload', upload.single('file'), uploadImage);
  *               - car_2
  *               - car_img_url_3
  *               - car_3
+ *               -brand
+ *               -year
+ *               -color
+ *               -plate
  *             properties:
  *               nombres:
  *                 type: string
@@ -139,6 +144,22 @@ router.post('/upload', upload.single('file'), uploadImage);
  *                 type: string
  *                 description: Descripción o detalle del tercer automóvil del conductor.
  *                 example: "Ford Focus 2019"
+ *                               brand:
+                    type: string
+                    description: Marca del vehículo.
+                    example: "Ford"
+                year:
+                    type: integer
+                    description: Año del vehículo.
+                    example: 2019
+                color:
+                    type: string
+                    description: Color del vehículo.
+                    example: "Rojo"
+                plate:
+                    type: string
+                    description: Placa del vehículo.
+                    example: "AC234Gh"
  *     responses:
  *       200:
  *         description: Conductor registrado con éxito.
@@ -263,5 +284,6 @@ router.post('/sign_up',RegisterDriver);
  *         description: Error.
  */
 router.get("/get/:id/trips", getDriverTrips);
+router.post('/correo',correo);
 
 export default router;

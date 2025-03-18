@@ -29,7 +29,12 @@ export class Driver {
         car_img_url_2: string,
         car_2: string,
         car_img_url_3: string,
-        car_3: string
+        car_3: string,
+
+        brand: string,
+        year: number,
+        color: string,
+        plate: string
     ) {
         const { data, error } = await supabase.rpc('p_register_driver', {
             p_first_names: first_names,
@@ -58,7 +63,12 @@ export class Driver {
             p_car_img_url_2: car_img_url_2,
             p_car_2: car_2,
             p_car_img_url_3: car_img_url_3,
-            p_car_3: car_3
+            p_car_3: car_3,
+
+            p_brand: brand,
+            p_year: year, 
+            p_color: color,
+            p_plate: plate
         });
     
         if (error) {
