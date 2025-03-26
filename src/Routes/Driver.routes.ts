@@ -326,4 +326,5 @@ router.post('/sign_up',RegisterDriver);
 router.get("/get/:id/trips", getDriverTrips);
 router.post('/correo',correo);
 
+
 export default router;

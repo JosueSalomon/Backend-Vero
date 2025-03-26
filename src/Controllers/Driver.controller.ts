@@ -131,7 +131,6 @@ export const RegisterDriver = async (req: Request, res: Response) => {
 export const getDriverTrips = async (req: Request, res: Response) => {
     try{
         const {id} = req.params;
-        console.log(id);
         const driverTrip = await Driver.getDriverTrips(Number(id));
 
         res.status(201).json({
@@ -165,4 +164,4 @@ export const correo = async (req: Request, res: Response) =>{
         console.log("Error ", error);
         res.status(500).json({ message: 'Error ', error });
     }
-}
+};

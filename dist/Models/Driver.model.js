@@ -68,5 +68,6 @@ class Driver {
             return data;
         });
     }
+    ;
 }
 exports.Driver = Driver;
