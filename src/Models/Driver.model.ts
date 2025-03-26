@@ -1,5 +1,4 @@
 import  supabase  from '../Utils/supabase';
-import fs from 'fs';
 
 
 export class Driver {

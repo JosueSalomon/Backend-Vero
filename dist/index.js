@@ -9,8 +9,9 @@ const cors_1 = __importDefault(require("cors"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_1 = __importDefault(require("./Utils/swagger"));
 //rutass ola
-const Driver_route_1 = __importDefault(require("./Routes/Driver.route"));
+const Driver_routes_1 = __importDefault(require("./Routes/Driver.routes"));
 const Auth_routes_1 = __importDefault(require("./Routes/Auth.routes"));
+const sign_up_routes_1 = __importDefault(require("./Routes/sign-up.routes"));
 dotenv_1.default.config();
 require('dotenv').config();
 const app = (0, express_1.default)();
@@ -20,8 +21,9 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 //Rutas
-app.use('/driver', Driver_route_1.default);
+app.use('/driver', Driver_routes_1.default);
 app.use('/auth', Auth_routes_1.default);
+app.use('/sign_up', sign_up_routes_1.default);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
 // app.use('/pago', pagoRouter)
