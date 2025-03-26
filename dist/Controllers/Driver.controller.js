@@ -76,7 +76,6 @@ exports.RegisterDriver = RegisterDriver;
 const getDriverTrips = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        console.log(id);
         const driverTrip = yield Driver_model_1.Driver.getDriverTrips(Number(id));
         res.status(201).json({
             driverTrip

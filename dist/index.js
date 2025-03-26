@@ -11,6 +11,7 @@ const swagger_1 = __importDefault(require("./Utils/swagger"));
 //rutass ola
 const Driver_route_1 = __importDefault(require("./Routes/Driver.route"));
 const Auth_routes_1 = __importDefault(require("./Routes/Auth.routes"));
+const Trip_routes_1 = __importDefault(require("./Routes/Trip.routes"));
 dotenv_1.default.config();
 require('dotenv').config();
 const app = (0, express_1.default)();
@@ -22,6 +23,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 //Rutas
 app.use('/driver', Driver_route_1.default);
 app.use('/auth', Auth_routes_1.default);
+app.use('/trip', Trip_routes_1.default);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
 // app.use('/pago', pagoRouter)

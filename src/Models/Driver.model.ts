@@ -90,6 +90,6 @@ export class Driver {
             throw error;
         }
         return data;
-    }
+    };
 
 }
