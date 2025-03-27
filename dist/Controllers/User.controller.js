@@ -13,10 +13,10 @@ exports.CreateRoute = void 0;
 const user_model_1 = require("../Models/user.model");
 const CreateRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { user_id } = req.params;
-    const { departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, } = req.body;
+    const { departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, days_id } = req.body;
     try {
         console.log("User ID recibido:", user_id); // <-- Agregar esto
-        const Response = yield user_model_1.User.CreateRoute(Number(user_id), departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time);
+        const Response = yield user_model_1.User.CreateRoute(Number(user_id), departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, days_id);
         res.status(200).json(Response);
     }
     catch (error) {

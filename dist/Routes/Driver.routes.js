@@ -142,21 +142,20 @@ router.post('/upload', upload_1.default.single('file'), Driver_controller_1.uplo
  *                 description: Descripción o detalle del tercer automóvil del conductor.
  *                 example: "Ford Focus 2019"
  *                               brand:
-                    type: string
-                    description: Marca del vehículo.
-                    example: "Ford"
-                year:
-                    type: integer
-                    description: Año del vehículo.
-                    example: 2019
-                color:
-                    type: string
-                    description: Color del vehículo.
-                    example: "Rojo"
-                plate:
-                    type: string
-                    description: Placa del vehículo.
-                    example: "AC234Gh"
+ *                     description: Marca del vehículo.
+ *                 example: "Ford"
+ *               year:
+ *                   type: integer
+ *                   description: Año del vehículo.
+ *                  example: 2019
+ *              color:
+ *                   type: string
+ *                   description: Color del vehículo.
+ *                  example: "Rojo"
+ *               plate:
+ *                   type: string
+ *                  description: Placa del vehículo.
+ *                   example: "AC234Gh"
  *     responses:
  *       200:
  *         description: Conductor registrado con éxito.

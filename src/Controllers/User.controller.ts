@@ -11,7 +11,8 @@ export const CreateRoute = async (req: Request, res:Response) =>{
         end_date,
         estimated_price,
         comment,
-        return_time,} = req.body;
+        return_time,
+        days_id} = req.body;
 
     try{
         console.log("User ID recibido:", user_id); // <-- Agregar esto
@@ -24,7 +25,8 @@ export const CreateRoute = async (req: Request, res:Response) =>{
             end_date, 
             estimated_price, 
             comment, 
-            return_time
+            return_time,
+            days_id
             );
 
             res.status(200).json(
