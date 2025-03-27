@@ -8,7 +8,7 @@ import specs from "./Utils/swagger"
 //rutass ola
 import conductorRouter from './Routes/Driver.routes'
 import authRoutes from './Routes/Auth.routes'
-import signupRoutes from './Routes/sign-up.routes'
+import signupRoutes from './Routes/SignUp.routes'
 import tripRoutes from './Routes/Trip.routes'
 import userRoutes from './Routes/user.routes'
 
