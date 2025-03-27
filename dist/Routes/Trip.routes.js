@@ -8,4 +8,5 @@ const Trip_controller_1 = require("../Controllers/Trip.controller");
 const router = express_1.default.Router();
 router.get("/get/trips/:id", Trip_controller_1.getTripDetails);
 router.put("/:id/cancel/driver", Trip_controller_1.cancelTripFromDriver);
+router.post("/report", Trip_controller_1.reportTripUser);
 exports.default = router;
