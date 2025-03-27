@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Sign_up } from '../Models/sign-up.Model'
+import { Sign_up } from '../Models/sign-up.model'
 
 export const VerifyCode = async (req: Request, res: Response) => {
     try{
