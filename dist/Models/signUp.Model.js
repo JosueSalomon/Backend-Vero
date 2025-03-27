@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Sign_up = void 0;
+exports.SignUp = void 0;
 const supabase_1 = __importDefault(require("../Utils/supabase"));
-class Sign_up {
+class SignUp {
     static VerifyCode(email, code) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_verify_code', {
@@ -46,4 +46,4 @@ class Sign_up {
         });
     }
 }
-exports.Sign_up = Sign_up;
+exports.SignUp = SignUp;

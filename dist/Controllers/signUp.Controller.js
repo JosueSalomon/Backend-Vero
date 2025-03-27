@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generate_new_code = exports.VerifyCode = void 0;
-const signUp_Model_1 = require("../Models/signUp.Model");
+const SignUp_model_1 = require("../Models/SignUp.model");
 const VerifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, code } = req.body;
-        const Response = yield signUp_Model_1.Sign_up.VerifyCode(email, code);
+        const Response = yield SignUp_model_1.SignUp.VerifyCode(email, code);
         res.status(201).json({
             Response
         });
@@ -34,7 +34,7 @@ exports.VerifyCode = VerifyCode;
 const generate_new_code = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, code } = req.body;
-        const Response = yield signUp_Model_1.Sign_up.GenerateNewCode(email, code);
+        const Response = yield SignUp_model_1.SignUp.GenerateNewCode(email, code);
         res.status(201).json({
             Response
         });

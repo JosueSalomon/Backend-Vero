@@ -1,6 +1,6 @@
 import  supabase  from '../Utils/supabase';
 
-export class Sign_up{
+export class SignUp{
     static async VerifyCode(email: string, code: string){
         const{data, error} = await supabase.rpc('p_verify_code',{
             p_email: email,

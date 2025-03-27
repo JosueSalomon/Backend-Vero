@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { Sign_up } from '../Models/signUp.Model'
+import { SignUp } from '../Models/SignUp.model';
 
 export const VerifyCode = async (req: Request, res: Response) => {
     try{
             const {email, code} = req.body;
-            const Response = await Sign_up.VerifyCode(email, code);
+            const Response = await SignUp.VerifyCode(email, code);
             
             res.status(201).json({
                 Response
@@ -25,7 +25,7 @@ export const VerifyCode = async (req: Request, res: Response) => {
 export const generate_new_code = async (req: Request, res: Response) => {
     try{
             const {email, code} = req.body;
-            const Response = await Sign_up.GenerateNewCode(email, code);
+            const Response = await SignUp.GenerateNewCode(email, code);
             
             res.status(201).json({
                 Response
