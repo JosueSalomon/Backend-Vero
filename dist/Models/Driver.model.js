@@ -69,5 +69,101 @@ class Driver {
         });
     }
     ;
+    static CreateCouterOffer(driver_id, route_id, counteroffer, comment) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_create_counteroffers', {
+                p_driver_id: driver_id,
+                p_route_id: route_id,
+                p_counteroffer: counteroffer,
+                p_comment: comment
+            });
+            if (!data) {
+                return "null";
+            }
+            if (data.code === 2) {
+                return {
+                    code: 2,
+                    message: "El usuario no se encuentra o no tiene el tipo adecuado"
+                };
+            }
+            if (data.code === 3) {
+                return {
+                    code: 3,
+                    message: "Error: la contraoferta ya existe"
+                };
+            }
+            if (data.code === 4) {
+                return {
+                    code: 4,
+                    message: "Error en los datos proporcionados"
+                };
+            }
+            if (data.code === 5) {
+                return {
+                    code: 5,
+                    message: "Error del servidor al crear la contraoferta"
+                };
+            }
+            if (data.code === 1) {
+                return {
+                    code: 1,
+                    message: "Contraoferta generada con éxito",
+                    route: data.counteroffer
+                };
+            }
+            if (error) {
+                throw error;
+            }
+        });
+    }
+    static UpdateDriver(driver_id, first_names, last_names, phone, email, url_photo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_edit_person', {
+                p_driver_id: driver_id,
+                p_first_names: first_names,
+                p_last_names: last_names,
+                p_phone: phone,
+                p_email: email,
+                p_url_photo: url_photo
+            });
+            if (!data) {
+                return "null";
+            }
+            if (data.code === 2) {
+                return {
+                    code: 2,
+                    message: "El usuario no existe "
+                };
+            }
+            if (data.code === 3) {
+                return {
+                    code: 3,
+                    message: "El email ya está en uso por otro usuario"
+                };
+            }
+            if (data.code === 5) {
+                return {
+                    code: 4,
+                    message: "Error en los datos proporcionados"
+                };
+            }
+            if (data.code === 6) {
+                return {
+                    code: 5,
+                    message: "Error del servidor al actualizar la persona"
+                };
+            }
+            if (data.code === 1) {
+                return {
+                    code: 1,
+                    message: "Actualizacion con exito",
+                    route: data.updated_driver
+                };
+            }
+            if (error) {
+                throw error;
+            }
+        });
+    }
 }
 exports.Driver = Driver;

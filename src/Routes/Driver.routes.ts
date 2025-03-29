@@ -4,7 +4,8 @@ import {
     uploadImage,
     RegisterDriver,
     getDriverTrips,
-    correo
+    CreateCounterOffers,
+    UpdateDriver
 } from "../Controllers/Driver.controller";
 
 const router = express.Router();
@@ -323,7 +324,8 @@ router.post('/sign_up',RegisterDriver);
  *                       description: Array of days when the driver operates (e.g., ["Monday", "Wednesday", "Friday"]).
  */
 router.get("/get/:id/trips", getDriverTrips);
-router.post('/correo',correo);
+router.post('/:id/counteroffer',CreateCounterOffers);
+router.put("/:id/update",UpdateDriver)
 
 
 export default router;

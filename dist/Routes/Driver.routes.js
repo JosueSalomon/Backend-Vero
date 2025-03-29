@@ -319,5 +319,6 @@ router.post('/sign_up', Driver_controller_1.RegisterDriver);
  *                       description: Array of days when the driver operates (e.g., ["Monday", "Wednesday", "Friday"]).
  */
 router.get("/get/:id/trips", Driver_controller_1.getDriverTrips);
-router.post('/correo', Driver_controller_1.correo);
+router.post('/:id/counteroffer', Driver_controller_1.CreateCounterOffers);
+router.put("/:id/update", Driver_controller_1.UpdateDriver);
 exports.default = router;

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.correo = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
 const Driver_model_1 = require("../Models/Driver.model");
@@ -93,19 +93,37 @@ const getDriverTrips = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getDriverTrips = getDriverTrips;
-const correo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const CreateCounterOffers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { route_id, counteroffer, comment } = req.body;
     try {
-        const { correo } = req.body;
-        const verificationCode = generarCodigoAleatorio();
-        const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
-        yield (0, smtpService_1.sendVerificationEmail)(correo, verificationCode, Description);
-        res.status(201).json({
-            mensaje: "Cooreo enviando con exito :3"
+        const Response = yield Driver_model_1.Driver.CreateCouterOffer(Number(id), route_id, counteroffer, comment);
+        res.status(200).json({
+            Response
         });
     }
     catch (error) {
-        console.log("Error ", error);
-        res.status(500).json({ message: 'Error ', error });
+        console.log("Error con creacio de contraoferta", error);
+        res.status(500).json({
+            message: 'Error con creacio de contraoferta', error
+        });
     }
 });
-exports.correo = correo;
+exports.CreateCounterOffers = CreateCounterOffers;
+const UpdateDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { first_names, last_names, phone, email, url_photo } = req.body;
+    try {
+        const Response = yield Driver_model_1.Driver.UpdateDriver(Number(id), first_names, last_names, phone, email, url_photo);
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        console.log("Error con actualizar el usuario", error);
+        res.status(500).json({
+            message: 'Error con actualizar el usuario', error
+        });
+    }
+});
+exports.UpdateDriver = UpdateDriver;

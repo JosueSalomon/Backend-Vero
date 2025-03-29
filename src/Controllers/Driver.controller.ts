@@ -149,19 +149,60 @@ export const getDriverTrips = async (req: Request, res: Response) => {
     }
 };
 
-export const correo = async (req: Request, res: Response) =>{
+
+export const CreateCounterOffers = async (req: Request, res: Response) =>{
+    const {id} = req.params;
+    const {
+        route_id,
+        counteroffer,
+        comment
+    } = req.body;
+
     try{
-        const{correo} = req.body
-        const verificationCode = generarCodigoAleatorio();
-        const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
 
+        const Response = await Driver.CreateCouterOffer(
+        Number(id),route_id,
+        counteroffer,
+        comment)
 
-        await sendVerificationEmail(correo, verificationCode, Description);
-        res.status(201).json({
-            mensaje:"Cooreo enviando con exito :3"
+        res.status(200).json({
+            Response
         })
-    } catch(error){
-        console.log("Error ", error);
-        res.status(500).json({ message: 'Error ', error });
+    }catch(error: any){
+        console.log("Error con creacio de contraoferta", error);
+        res.status(500).json({
+            message: 'Error con creacio de contraoferta', error
+        })
     }
-};
+}
+
+
+export const UpdateDriver = async (req: Request, res: Response) =>{
+    const {id} = req.params
+    const {
+        first_names,
+        last_names,
+        phone,
+        email,
+        url_photo
+    } = req.body
+
+    try{
+        const Response = await Driver.UpdateDriver(
+            Number(id),
+            first_names,
+            last_names,
+            phone,
+            email,
+            url_photo)
+
+        res.status(200).json({
+            Response
+        })
+    }catch(error: any){
+        console.log("Error con actualizar el usuario", error);
+        res.status(500).json({
+            message: 'Error con actualizar el usuario', error
+        })
+    }
+}
