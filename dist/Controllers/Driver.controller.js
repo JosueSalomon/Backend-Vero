@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.generarCodigoAleatorio = generarCodigoAleatorio;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
 const Driver_model_1 = require("../Models/Driver.model");

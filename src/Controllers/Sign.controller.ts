@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
 import {SignUp} from '../Models/Sign.model'
+import {sendVerificationEmail} from "../services/smtpService"
+import { generarCodigoAleatorio } from './Driver.controller';
+
 
 export const VerifyCode = async (req: Request, res: Response) => {
     try{
@@ -23,13 +26,15 @@ export const VerifyCode = async (req: Request, res: Response) => {
 } 
 
 export const generate_new_code = async (req: Request, res: Response) => {
+    const {email, code} = req.body;
     try{
-            const {email, code} = req.body;
-            const Response = await SignUp.GenerateNewCode(email, code);
-            
-            res.status(201).json({
-                Response
-            })
+        const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
+        const verificationCode = generarCodigoAleatorio();
+        const Response = await SignUp.GenerateNewCode(email, code);
+        await sendVerificationEmail(email, verificationCode, Description);
+        res.status(201).json({
+            Response
+        })
         } catch (error) {
             const errorInfo = error && typeof error === 'object'
                 ? JSON.stringify(error, null, 2)

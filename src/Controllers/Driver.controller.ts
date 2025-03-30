@@ -8,7 +8,7 @@ interface MulterRequest extends Request {
     file?: Express.Multer.File; 
 }
 
-function generarCodigoAleatorio() {
+export function generarCodigoAleatorio() {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let codigo = '';
     for (let i = 0; i < 6; i++) {
