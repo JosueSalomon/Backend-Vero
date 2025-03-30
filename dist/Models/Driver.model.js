@@ -116,12 +116,10 @@ class Driver {
             }
         });
     }
-    static UpdateDriver(driver_id, first_names, last_names, phone, email, url_photo) {
+    static UpdateDriver(driver_id, phone, email, url_photo) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_edit_person', {
                 p_driver_id: driver_id,
-                p_first_names: first_names,
-                p_last_names: last_names,
                 p_phone: phone,
                 p_email: email,
                 p_url_photo: url_photo

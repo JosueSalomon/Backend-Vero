@@ -112,9 +112,9 @@ const CreateCounterOffers = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.CreateCounterOffers = CreateCounterOffers;
 const UpdateDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { first_names, last_names, phone, email, url_photo } = req.body;
+    const { phone, email, url_photo } = req.body;
     try {
-        const Response = yield Driver_model_1.Driver.UpdateDriver(Number(id), first_names, last_names, phone, email, url_photo);
+        const Response = yield Driver_model_1.Driver.UpdateDriver(Number(id), phone, email, url_photo);
         res.status(200).json({
             Response
         });

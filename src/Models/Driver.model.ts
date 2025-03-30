@@ -152,16 +152,12 @@ export class Driver {
 
     static async UpdateDriver(
         driver_id: number,
-        first_names: string,
-        last_names: string,
         phone: string,
         email: string,
         url_photo: string,
     ){
         const{data,error} = await supabase.rpc('p_edit_person',{
             p_driver_id: driver_id,
-            p_first_names:first_names ,
-            p_last_names: last_names,
             p_phone: phone,
             p_email: email,
             p_url_photo: url_photo

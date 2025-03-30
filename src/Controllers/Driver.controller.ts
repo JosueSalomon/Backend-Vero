@@ -180,8 +180,6 @@ export const CreateCounterOffers = async (req: Request, res: Response) =>{
 export const UpdateDriver = async (req: Request, res: Response) =>{
     const {id} = req.params
     const {
-        first_names,
-        last_names,
         phone,
         email,
         url_photo
@@ -190,8 +188,6 @@ export const UpdateDriver = async (req: Request, res: Response) =>{
     try{
         const Response = await Driver.UpdateDriver(
             Number(id),
-            first_names,
-            last_names,
             phone,
             email,
             url_photo)
