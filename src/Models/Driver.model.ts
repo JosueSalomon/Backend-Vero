@@ -12,6 +12,7 @@ export class Driver {
         gender: string,
         user_type_id: number,
         verification_code: string,
+        url_profile_pic: string,
     
         front_license_img_url: string,
         front_license: string,
@@ -45,7 +46,7 @@ export class Driver {
             p_gender: gender,
             p_user_type_id: user_type_id,
             p_verification_code: verification_code,
-    
+            p_url_profile_pic: url_profile_pic,
             // Nuevos parámetros de imágenes
             p_front_license_img_url: front_license_img_url,
             p_front_license: front_license,
