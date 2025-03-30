@@ -49,7 +49,7 @@ class Auth {
                     console.error("Error: Insufficient data to generate the token", data);
                     return "Insufficient data to generate the token";
                 }
-                const token = (0, jwt_1.createToken)(data.user_id, data.names, data.email, data.profile_img_url);
+                const token = (0, jwt_1.createToken)(data.user_id, data.names, data.email, data.profile_img_url, data.user_type_id);
                 const result = yield this.insertUserToken(email, password, token);
                 data.token = token;
                 return data;

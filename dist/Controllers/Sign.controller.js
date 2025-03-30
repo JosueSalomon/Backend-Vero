@@ -34,11 +34,11 @@ const VerifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.VerifyCode = VerifyCode;
 const generate_new_code = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, code } = req.body;
+    const { email } = req.body;
     try {
         const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
         const verificationCode = (0, Driver_controller_1.generarCodigoAleatorio)();
-        const Response = yield Sign_model_1.SignUp.GenerateNewCode(email, code);
+        const Response = yield Sign_model_1.SignUp.GenerateNewCode(email, verificationCode);
         yield (0, smtpService_1.sendVerificationEmail)(email, verificationCode, Description);
         res.status(201).json({
             Response
