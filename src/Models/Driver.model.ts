@@ -154,13 +154,13 @@ export class Driver {
         driver_id: number,
         phone: string,
         email: string,
-        url_photo: string,
+
     ){
         const{data,error} = await supabase.rpc('p_edit_person',{
             p_driver_id: driver_id,
             p_phone: phone,
             p_email: email,
-            p_url_photo: url_photo
+
     });
     if (!data){
         return "null";

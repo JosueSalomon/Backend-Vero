@@ -189,8 +189,7 @@ export const UpdateDriver = async (req: Request, res: Response) =>{
         const Response = await Driver.UpdateDriver(
             Number(id),
             phone,
-            email,
-            url_photo)
+            email,)
 
         res.status(200).json({
             Response

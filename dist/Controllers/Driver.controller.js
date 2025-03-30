@@ -114,7 +114,7 @@ const UpdateDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const { id } = req.params;
     const { phone, email, url_photo } = req.body;
     try {
-        const Response = yield Driver_model_1.Driver.UpdateDriver(Number(id), phone, email, url_photo);
+        const Response = yield Driver_model_1.Driver.UpdateDriver(Number(id), phone, email);
         res.status(200).json({
             Response
         });
