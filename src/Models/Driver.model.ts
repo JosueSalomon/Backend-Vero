@@ -180,16 +180,23 @@ export class Driver {
         };
     }
 
-    if(data.code===5){
+    if(data.code===7){
         return{
             code: 4,
+            message: "El telefono ya está en uso por otro usuario"
+        };
+    }
+
+    if(data.code===5){
+        return{
+            code: 5,
             message: "Error en los datos proporcionados"
         };
     }
 
     if(data.code===6){
         return{
-            code: 5,
+            code: 6,
             message: "Error del servidor al actualizar la persona"
         };
     }
