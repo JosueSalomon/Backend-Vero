@@ -26,10 +26,11 @@ class Trip {
             return data;
         });
     }
-    static cancelTripFromDriver(tripId) {
+    static cancelTripFromDriver(tripId, reportingUserTypeId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { data, error } = yield supabase_1.default.rpc('p_cancel_trip_from_driver', {
-                p_trip_id: tripId
+            const { data, error } = yield supabase_1.default.rpc('p_cancel_trip', {
+                p_trip_id: tripId,
+                p_reporting_user_type_id: reportingUserTypeId
             });
             if (error) {
                 throw error;
@@ -37,13 +38,14 @@ class Trip {
             return data;
         });
     }
-    static reportTripUser(tripId, reportStatusId, reportedUserId, reportingUserId, reportSubject, reportDescription, reporterDate, reportUrlImages) {
+    static reportTripUser(tripId, reportStatusId, reportedUserId, reportingUserId, reportingUserTypeId, reportSubject, reportDescription, reporterDate, reportUrlImages) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { data, error } = yield supabase_1.default.rpc('p_report_trip_user', {
+            const { data, error } = yield supabase_1.default.rpc('p_report_trip', {
                 p_trip_id: tripId,
                 p_report_status_id: reportStatusId,
                 p_reported_user_id: reportedUserId,
                 p_reporting_user_id: reportingUserId,
+                p_reporting_user_type_id: reportingUserTypeId,
                 p_report_subject: reportSubject,
                 p_report_description: reportDescription,
                 p_reporter_date: reporterDate,
