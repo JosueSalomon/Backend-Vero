@@ -26,7 +26,8 @@ export const getTripDetails = async (req: Request, res: Response) => {
     export const cancelTripFromDriver = async (req: Request, res: Response) => {
         try{
             const {id} = req.params;
-            const data = await Trip.cancelTripFromDriver(Number(id));
+            const {reportingUserTypeId} = req.body;
+            const data = await Trip.cancelTripFromDriver(Number(id), reportingUserTypeId);
     
             res.status(201).json({
                 data
@@ -52,6 +53,7 @@ export const getTripDetails = async (req: Request, res: Response) => {
                 reportStatusId,
                 reportedUserId,
                 reportingUserId,
+                reportingUserTypeId,
                 reportSubject,
                 reportDescription,
                 reporterDate,
@@ -63,6 +65,7 @@ export const getTripDetails = async (req: Request, res: Response) => {
                 reportStatusId,
                 reportedUserId,
                 reportingUserId,
+                reportingUserTypeId,
                 reportSubject,
                 reportDescription,
                 reporterDate,

@@ -34,7 +34,8 @@ exports.getTripDetails = getTripDetails;
 const cancelTripFromDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const data = yield Trip_model_1.Trip.cancelTripFromDriver(Number(id));
+        const { reportingUserTypeId } = req.body;
+        const data = yield Trip_model_1.Trip.cancelTripFromDriver(Number(id), reportingUserTypeId);
         res.status(201).json({
             data
         });
@@ -53,8 +54,8 @@ const cancelTripFromDriver = (req, res) => __awaiter(void 0, void 0, void 0, fun
 exports.cancelTripFromDriver = cancelTripFromDriver;
 const reportTripUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { tripId, reportStatusId, reportedUserId, reportingUserId, reportSubject, reportDescription, reporterDate, reportUrlImages } = req.body;
-        const data = yield Trip_model_1.Trip.reportTripUser(tripId, reportStatusId, reportedUserId, reportingUserId, reportSubject, reportDescription, reporterDate, reportUrlImages);
+        const { tripId, reportStatusId, reportedUserId, reportingUserId, reportingUserTypeId, reportSubject, reportDescription, reporterDate, reportUrlImages } = req.body;
+        const data = yield Trip_model_1.Trip.reportTripUser(tripId, reportStatusId, reportedUserId, reportingUserId, reportingUserTypeId, reportSubject, reportDescription, reporterDate, reportUrlImages);
         res.status(201).json({
             data
         });

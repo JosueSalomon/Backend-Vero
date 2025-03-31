@@ -12,9 +12,10 @@ export class Trip {
         return data;
     }
 
-    static async cancelTripFromDriver(tripId: number){
-        const{data, error} = await supabase.rpc('p_cancel_trip_from_driver',{
-            p_trip_id: tripId
+    static async cancelTripFromDriver(tripId: number, reportingUserTypeId: number){
+        const{data, error} = await supabase.rpc('p_cancel_trip',{
+            p_trip_id: tripId,
+            p_reporting_user_type_id: reportingUserTypeId
         });
         if(error){
             throw error;
@@ -27,16 +28,18 @@ export class Trip {
         reportStatusId: number,
         reportedUserId: number,
         reportingUserId: number,
+        reportingUserTypeId: number,
         reportSubject: string,
         reportDescription: string,
         reporterDate: string,
         reportUrlImages: string[]
     ){
-        const{data, error} = await supabase.rpc('p_report_trip_user',{
+        const{data, error} = await supabase.rpc('p_report_trip',{
             p_trip_id: tripId,
             p_report_status_id: reportStatusId,
             p_reported_user_id: reportedUserId,
             p_reporting_user_id: reportingUserId,
+            p_reporting_user_type_id: reportingUserTypeId,
             p_report_subject: reportSubject,
             p_report_description: reportDescription,
             p_reporter_date: reporterDate,
