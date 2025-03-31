@@ -14,6 +14,9 @@ export class Driver {
         verification_code: string,
         url_profile_pic: string,
     
+        antecendetes_penales_img_url: string,
+        antecendetes_penales: string,
+
         front_license_img_url: string,
         front_license: string,
         back_license_img_url: string,
@@ -47,6 +50,9 @@ export class Driver {
             p_user_type_id: user_type_id,
             p_verification_code: verification_code,
             p_url_profile_pic: url_profile_pic,
+
+            p_antecendetes_penales_img_url:antecendetes_penales_img_url,
+            p_antecendetes_penales: antecendetes_penales,
             // Nuevos parámetros de imágenes
             p_front_license_img_url: front_license_img_url,
             p_front_license: front_license,
