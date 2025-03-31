@@ -4,7 +4,8 @@ import {
     uploadImage,
     RegisterDriver,
     getDriverTrips,
-    correo
+    CreateCounterOffers,
+    UpdateDriver
 } from "../Controllers/Driver.controller";
 
 const router = express.Router();
@@ -145,21 +146,20 @@ router.post('/upload', upload.single('file'), uploadImage);
  *                 description: Descripción o detalle del tercer automóvil del conductor.
  *                 example: "Ford Focus 2019"
  *                               brand:
-                    type: string
-                    description: Marca del vehículo.
-                    example: "Ford"
-                year:
-                    type: integer
-                    description: Año del vehículo.
-                    example: 2019
-                color:
-                    type: string
-                    description: Color del vehículo.
-                    example: "Rojo"
-                plate:
-                    type: string
-                    description: Placa del vehículo.
-                    example: "AC234Gh"
+ *                     description: Marca del vehículo.
+ *                 example: "Ford"
+ *               year:
+ *                   type: integer
+ *                   description: Año del vehículo.
+ *                  example: 2019
+ *              color:
+ *                   type: string
+ *                   description: Color del vehículo.
+ *                  example: "Rojo"
+ *               plate:
+ *                   type: string
+ *                  description: Placa del vehículo.
+ *                   example: "AC234Gh"
  *     responses:
  *       200:
  *         description: Conductor registrado con éxito.
@@ -324,7 +324,8 @@ router.post('/sign_up',RegisterDriver);
  *                       description: Array of days when the driver operates (e.g., ["Monday", "Wednesday", "Friday"]).
  */
 router.get("/get/:id/trips", getDriverTrips);
-router.post('/correo',correo);
+router.post('/:id/counteroffer',CreateCounterOffers);
+router.put("/:id/update",UpdateDriver)
 
 
 export default router;

@@ -4,8 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const SignUp_Controller_1 = require("../Controllers/SignUp.Controller");
+const User_controller_1 = require("../Controllers/User.controller");
 const router = express_1.default.Router();
-router.put('/code/verify', SignUp_Controller_1.VerifyCode);
-router.put('/code/generate/new', SignUp_Controller_1.generate_new_code);
+router.post('/:user_id/new/route', User_controller_1.CreateRoute);
 exports.default = router;

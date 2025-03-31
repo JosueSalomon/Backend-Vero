@@ -42,7 +42,7 @@ export class Auth {
             return "Insufficient data to generate the token";
         }
     
-        const token = createToken(data.user_id, data.names, data.email, data.profile_img_url);
+        const token = createToken(data.user_id, data.names, data.email, data.profile_img_url, data.user_type_id);
         const result = await this.insertUserToken(email, password, token);
 
         data.token = token;

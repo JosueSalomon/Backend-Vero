@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.correo = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.generarCodigoAleatorio = generarCodigoAleatorio;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
 const Driver_model_1 = require("../Models/Driver.model");
@@ -52,11 +53,11 @@ const uploadImage = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.uploadImage = uploadImage;
 const RegisterDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombres, apellidos, dni, telefono, correo, contrasena, genero, id_tipo_usuario, front_license_img_url, front_license, back_license_img_url, back_license, front_revision_img_url, front_revision, back_revision_img_url, back_revision, car_img_url_1, car_1, car_img_url_2, car_2, car_img_url_3, car_3, brand, year, color, plate } = req.body;
+    const { nombres, apellidos, dni, telefono, correo, contrasena, genero, id_tipo_usuario, url_profile_pic, front_license_img_url, front_license, back_license_img_url, back_license, front_revision_img_url, front_revision, back_revision_img_url, back_revision, car_img_url_1, car_1, car_img_url_2, car_2, car_img_url_3, car_3, brand, year, color, plate } = req.body;
     const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
     const verificationCode = generarCodigoAleatorio();
     try {
-        const Response = yield Driver_model_1.Driver.RegisterDriver(nombres, apellidos, dni, telefono, correo, contrasena, genero, id_tipo_usuario, verificationCode, front_license_img_url, front_license, back_license_img_url, back_license, front_revision_img_url, front_revision, back_revision_img_url, back_revision, car_img_url_1, car_1, car_img_url_2, car_2, car_img_url_3, car_3, brand, year, color, plate);
+        const Response = yield Driver_model_1.Driver.RegisterDriver(nombres, apellidos, dni, telefono, correo, contrasena, genero, id_tipo_usuario, verificationCode, url_profile_pic, front_license_img_url, front_license, back_license_img_url, back_license, front_revision_img_url, front_revision, back_revision_img_url, back_revision, car_img_url_1, car_1, car_img_url_2, car_2, car_img_url_3, car_3, brand, year, color, plate);
         res.status(200).json({
             Response,
         });
@@ -93,19 +94,37 @@ const getDriverTrips = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getDriverTrips = getDriverTrips;
-const correo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const CreateCounterOffers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { route_id, counteroffer, comment } = req.body;
     try {
-        const { correo } = req.body;
-        const verificationCode = generarCodigoAleatorio();
-        const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
-        yield (0, smtpService_1.sendVerificationEmail)(correo, verificationCode, Description);
-        res.status(201).json({
-            mensaje: "Cooreo enviando con exito :3"
+        const Response = yield Driver_model_1.Driver.CreateCouterOffer(Number(id), route_id, counteroffer, comment);
+        res.status(200).json({
+            Response
         });
     }
     catch (error) {
-        console.log("Error ", error);
-        res.status(500).json({ message: 'Error ', error });
+        console.log("Error con creacio de contraoferta", error);
+        res.status(500).json({
+            message: 'Error con creacio de contraoferta', error
+        });
     }
 });
-exports.correo = correo;
+exports.CreateCounterOffers = CreateCounterOffers;
+const UpdateDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { phone, email, url_photo } = req.body;
+    try {
+        const Response = yield Driver_model_1.Driver.UpdateDriver(Number(id), phone, email);
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        console.log("Error con actualizar el usuario", error);
+        res.status(500).json({
+            message: 'Error con actualizar el usuario', error
+        });
+    }
+});
+exports.UpdateDriver = UpdateDriver;

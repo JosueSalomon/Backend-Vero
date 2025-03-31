@@ -1,5 +1,5 @@
 import express from 'express';
-import {VerifyCode,generate_new_code} from '../Controllers/sign-up.Controller'
+import { VerifyCode, generate_new_code } from '../Controllers/Sign.controller';
 
 const router = express.Router();
 
