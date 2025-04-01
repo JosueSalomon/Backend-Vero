@@ -321,4 +321,5 @@ router.post('/sign_up', Driver_controller_1.RegisterDriver);
 router.get("/get/:id/trips", Driver_controller_1.getDriverTrips);
 router.post('/:id/counteroffer', Driver_controller_1.CreateCounterOffers);
 router.put("/:id/update", Driver_controller_1.UpdateDriver);
+router.get("/:id", Driver_controller_1.GetDriverById);
 exports.default = router;

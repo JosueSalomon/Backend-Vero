@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
 exports.generarCodigoAleatorio = generarCodigoAleatorio;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
@@ -128,3 +128,19 @@ const UpdateDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.UpdateDriver = UpdateDriver;
+const GetDriverById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const Response = yield Driver_model_1.Driver.GetDriverById(Number(id));
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        console.log("Error con obtener el usuario", error);
+        res.status(500).json({
+            message: 'Error con obtener el usuario', error
+        });
+    }
+});
+exports.GetDriverById = GetDriverById;

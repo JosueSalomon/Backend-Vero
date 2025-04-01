@@ -171,5 +171,16 @@ class Driver {
             }
         });
     }
+    static GetDriverById(driver_id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_driver', {
+                p_id_driver: driver_id
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.Driver = Driver;

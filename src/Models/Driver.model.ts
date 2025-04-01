@@ -220,6 +220,15 @@ export class Driver {
         throw error;
     }
 
-}
+    }
 
+    static async GetDriverById(driver_id: number){
+        const{data,error} = await supabase.rpc('p_get_driver',{
+            p_id_driver: driver_id
+        });
+        if(error){
+            throw error;
+        }
+        return data;
+    }
 }

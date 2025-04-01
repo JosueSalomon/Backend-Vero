@@ -207,3 +207,19 @@ export const UpdateDriver = async (req: Request, res: Response) =>{
         })
     }
 }
+
+export const GetDriverById = async (req: Request, res: Response) => {
+    const {id} = req.params
+    try{
+        const Response = await Driver.GetDriverById(Number(id))
+
+        res.status(200).json({
+            Response
+        })
+    }catch(error: any){
+        console.log("Error con obtener el usuario", error);
+        res.status(500).json({
+            message: 'Error con obtener el usuario', error
+        })
+    }
+}
