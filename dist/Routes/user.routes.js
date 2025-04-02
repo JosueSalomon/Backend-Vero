@@ -7,4 +7,6 @@ const express_1 = __importDefault(require("express"));
 const User_controller_1 = require("../Controllers/User.controller");
 const router = express_1.default.Router();
 router.post('/:user_id/new/route', User_controller_1.CreateRoute);
+router.get('/counteroffers/route/:id', User_controller_1.getCounteroffersUser);
+router.get('/counteroffer/:id', User_controller_1.getCounterofferDetail);
 exports.default = router;

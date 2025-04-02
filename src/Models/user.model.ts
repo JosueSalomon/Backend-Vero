@@ -69,4 +69,29 @@ export class User{
             throw error;
         }
     }
+
+    static async getCounteroffersUser (routeId: number){
+        
+        const{data,error} = await supabase.rpc('p_get_counteroffers_user',{
+            p_route_id: routeId
+        });
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+
+    static async getCounterofferDetail (counterofferId: number) {
+        
+        const {data, error} = await supabase.rpc('p_get_counteroffer_detail',{
+            p_counteroffer_id: counterofferId
+        });
+
+        if(error){
+            throw error;
+        }
+
+        return data;
+
+    }
 }

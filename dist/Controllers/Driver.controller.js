@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.getDetailsRoute = exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
 exports.generarCodigoAleatorio = generarCodigoAleatorio;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
@@ -144,3 +144,21 @@ const GetDriverById = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.GetDriverById = GetDriverById;
+const getDetailsRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const data = yield Driver_model_1.Driver.getDetailsRoute(Number(id));
+        res.status(200).json({ data });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.getDetailsRoute = getDetailsRoute;

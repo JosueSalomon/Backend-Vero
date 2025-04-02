@@ -231,4 +231,18 @@ export class Driver {
         }
         return data;
     }
+
+
+    static async getDetailsRoute(routeId: number){
+        
+        const{data,error} = await supabase.rpc('p_get_details_route',{
+            p_route_id: routeId
+        });
+        if(error){
+            throw error;
+        }
+        
+        return data;
+
+    };
 }

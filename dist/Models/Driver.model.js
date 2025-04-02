@@ -182,5 +182,17 @@ class Driver {
             return data;
         });
     }
+    static getDetailsRoute(routeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_details_route', {
+                p_route_id: routeId
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
+    ;
 }
 exports.Driver = Driver;

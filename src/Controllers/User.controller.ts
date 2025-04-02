@@ -38,3 +38,33 @@ export const CreateRoute = async (req: Request, res:Response) =>{
         res.status(500).json({ message: 'Error con creacion de la ruta', error });
     }
 }
+
+export const getCounteroffersUser = async (req: Request, res: Response) => {
+
+    try {
+        
+        const {id} = req.params;
+
+        const data = await User.getCounteroffersUser(Number(id));
+
+        res.status(200).json(data);
+    } catch (error: any) {
+        console.log("Error con creacion de la ruta", error);
+        res.status(500).json({ message: 'Error con creacion de la ruta', error });
+    }
+};
+
+export const getCounterofferDetail = async (req: Request, res: Response) => {
+    try {
+        
+        const {id} = req.params;
+
+        const data = await User.getCounterofferDetail(Number(id));
+
+        res.status(200).json(data);
+
+    } catch (error) {
+        console.log("Error con creacion de la ruta", error);
+        res.status(500).json({ message: 'Error con creacion de la ruta', error });
+    }
+}

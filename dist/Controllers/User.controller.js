@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateRoute = void 0;
+exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
 const user_model_1 = require("../Models/user.model");
 const CreateRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { user_id } = req.params;
@@ -25,3 +25,27 @@ const CreateRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.CreateRoute = CreateRoute;
+const getCounteroffersUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const data = yield user_model_1.User.getCounteroffersUser(Number(id));
+        res.status(200).json(data);
+    }
+    catch (error) {
+        console.log("Error con creacion de la ruta", error);
+        res.status(500).json({ message: 'Error con creacion de la ruta', error });
+    }
+});
+exports.getCounteroffersUser = getCounteroffersUser;
+const getCounterofferDetail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const data = yield user_model_1.User.getCounterofferDetail(Number(id));
+        res.status(200).json(data);
+    }
+    catch (error) {
+        console.log("Error con creacion de la ruta", error);
+        res.status(500).json({ message: 'Error con creacion de la ruta', error });
+    }
+});
+exports.getCounterofferDetail = getCounterofferDetail;

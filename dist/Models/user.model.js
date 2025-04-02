@@ -68,5 +68,27 @@ class User {
             }
         });
     }
+    static getCounteroffersUser(routeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_counteroffers_user', {
+                p_route_id: routeId
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
+    static getCounterofferDetail(counterofferId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_counteroffer_detail', {
+                p_counteroffer_id: counterofferId
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.User = User;

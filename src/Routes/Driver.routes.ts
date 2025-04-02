@@ -6,7 +6,8 @@ import {
     getDriverTrips,
     CreateCounterOffers,
     UpdateDriver,
-    GetDriverById
+    GetDriverById,
+    getDetailsRoute
 } from "../Controllers/Driver.controller";
 
 const router = express.Router();
@@ -328,5 +329,5 @@ router.get("/get/:id/trips", getDriverTrips);
 router.post('/:id/counteroffer',CreateCounterOffers);
 router.put("/:id/update",UpdateDriver)
 router.get("/:id",GetDriverById)
-
+router.get("/route/:id", getDetailsRoute);
 export default router;
