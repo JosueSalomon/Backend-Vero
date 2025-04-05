@@ -12,20 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendVerificationEmail = exports.transporter = void 0;
+exports.sendVerificationEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
-exports.transporter = nodemailer_1.default.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for port 465, false for other ports
+const transporter = nodemailer_1.default.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT),
+    secure: false,
     auth: {
-        user: "josueisacsalomonlanda@gmail.com",
-        pass: "urag tbhd bngo tmar",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
     },
 });
 const sendVerificationEmail = (to, code, description) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const info = yield exports.transporter.sendMail({
+        const info = yield transporter.sendMail({
             from: `"Vero" <${process.env.EMAIL_USER}>`,
             to,
             subject: "Código de Verificación",
