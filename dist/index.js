@@ -33,7 +33,7 @@ app.use('/user', user_routes_1.default);
 // app.use('/pago', pagoRouter)
 //Servidor Raiz.
 app.get('/', (req, res) => {
-    res.send('Root server is on siuuuuuuuuu todo funciona bien ');
+    res.send('Root server is on siuuuuuuuuu todo funciona bien uwu');
 });
 //Mensaje de consola que dice que funciona.
 app.listen(port, () => {

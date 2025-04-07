@@ -35,7 +35,7 @@ app.use('/user',userRoutes)
 
 //Servidor Raiz.
 app.get('/', (req: Request, res: Response) => {
-    res.send('Root server is on siuuuuuuuuu todo funciona bien ');
+    res.send('Root server is on siuuuuuuuuu todo funciona bien uwu');
 });
 
 //Mensaje de consola que dice que funciona.
