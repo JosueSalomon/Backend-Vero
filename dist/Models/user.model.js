@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const supabase_1 = __importDefault(require("../Utils/supabase"));
 class User {
-    static CreateRoute(user_id, departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, id_days_array) {
+    static CreateRoute(user_id, departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, id_days_array, coordinate_x, coordinate_y) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_create_route', {
                 p_user_id: user_id,
@@ -27,7 +27,9 @@ class User {
                 p_estimated_price: estimated_price,
                 p_comment: comment,
                 p_return_time: return_time,
-                p_days_id: id_days_array
+                p_days_id: id_days_array,
+                p_coordinate_x: coordinate_x,
+                p_coordinate_y: coordinate_y
             });
             if (!data) {
                 return "null";

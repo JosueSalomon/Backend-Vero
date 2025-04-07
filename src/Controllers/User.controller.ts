@@ -12,6 +12,8 @@ export const CreateRoute = async (req: Request, res:Response) =>{
         estimated_price,
         comment,
         return_time,
+        coordinate_x,
+        coordinate_y,
         days_id} = req.body;
 
     try{
@@ -26,7 +28,9 @@ export const CreateRoute = async (req: Request, res:Response) =>{
             estimated_price, 
             comment, 
             return_time,
-            days_id
+            days_id,
+            coordinate_x,
+            coordinate_y
             );
 
             res.status(200).json(

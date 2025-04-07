@@ -12,7 +12,9 @@ export class User{
         estimated_price: number,
         comment: string,
         return_time: string,
-        id_days_array: number[]){
+        id_days_array: number[],
+        coordinate_x: number,
+        coordinate_y: number,){
         const{data, error} = await supabase.rpc('p_create_route',{
             p_user_id: user_id,
             p_departure_point: departure_point,
@@ -23,7 +25,9 @@ export class User{
             p_estimated_price: estimated_price,
             p_comment: comment,
             p_return_time: return_time,
-            p_days_id: id_days_array
+            p_days_id: id_days_array,
+            p_coordinate_x: coordinate_x,
+            p_coordinate_y: coordinate_y
         });
         if (!data){
             return "null";
