@@ -194,5 +194,19 @@ class Driver {
         });
     }
     ;
+    static updateBankInformation(userId, bankInstitutionId, bankAccountNumber) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_update_bank_information', {
+                p_user_id: userId,
+                p_bank_institution_id: bankInstitutionId,
+                p_bank_account_number: bankAccountNumber
+            });
+            if (error) {
+                throw error;
+            }
+            ;
+            return data;
+        });
+    }
 }
 exports.Driver = Driver;

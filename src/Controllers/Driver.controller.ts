@@ -243,5 +243,33 @@ export const getDetailsRoute = async (req: Request, res: Response) => {
                 message: 'Error Information: ', 
                 error: errorInfo
             });
+    };
+};
+
+export const updateBankInformation = async (req: Request, res: Response) => {
+    try{
+        
+        const {userId,
+            bankInstitutionId,
+            bankAccountNumber} = req.body;
+
+        const data = await Driver.updateBankInformation(userId,
+            bankInstitutionId,
+            bankAccountNumber);
+
+        res.status(201).json({
+            data
+        })
+
+    }catch(error){
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
     }
-}
+};

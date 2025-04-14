@@ -14,6 +14,7 @@ const Auth_routes_1 = __importDefault(require("./Routes/Auth.routes"));
 const Sign_routes_1 = __importDefault(require("./Routes/Sign.routes"));
 const Trip_routes_1 = __importDefault(require("./Routes/Trip.routes"));
 const user_routes_1 = __importDefault(require("./Routes/user.routes"));
+const Administrator_routes_1 = __importDefault(require("./Routes/Administrator.routes"));
 dotenv_1.default.config();
 require('dotenv').config();
 const app = (0, express_1.default)();
@@ -28,6 +29,7 @@ app.use('/auth', Auth_routes_1.default);
 app.use('/sign', Sign_routes_1.default);
 app.use('/trip', Trip_routes_1.default);
 app.use('/user', user_routes_1.default);
+app.use('/administrator', Administrator_routes_1.default);
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)
 // app.use('/pago', pagoRouter)
