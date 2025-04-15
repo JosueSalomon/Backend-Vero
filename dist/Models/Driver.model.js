@@ -30,7 +30,6 @@ class Driver {
                 p_url_profile_pic: url_profile_pic,
                 p_antecendetes_penales_img_url: antecendetes_penales_img_url,
                 p_antecendetes_penales: antecendetes_penales,
-                // Nuevos parámetros de imágenes
                 p_front_license_img_url: front_license_img_url,
                 p_front_license: front_license,
                 p_back_license_img_url: back_license_img_url,
@@ -52,6 +51,9 @@ class Driver {
             });
             if (error) {
                 throw new Error(`Error al registrar al conductor: ${error.message}`);
+            }
+            if (!data) {
+                throw new Error(`No se recibió respuesta del servidor`);
             }
             return {
                 codigo: data.code,

@@ -54,23 +54,27 @@ const uploadImage = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.uploadImage = uploadImage;
 const RegisterDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { nombres, apellidos, dni, telefono, correo, contrasena, genero, id_tipo_usuario, url_profile_pic, antecendetes_penales_img_url, antecendetes_penales, front_license_img_url, front_license, back_license_img_url, back_license, front_revision_img_url, front_revision, back_revision_img_url, back_revision, car_img_url_1, car_1, car_img_url_2, car_2, car_img_url_3, car_3, brand, year, color, plate } = req.body;
-    const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
     const verificationCode = generarCodigoAleatorio();
+    const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
     try {
         const Response = yield Driver_model_1.Driver.RegisterDriver(nombres, apellidos, dni, telefono, correo, contrasena, genero, id_tipo_usuario, verificationCode, url_profile_pic, antecendetes_penales_img_url, antecendetes_penales, front_license_img_url, front_license, back_license_img_url, back_license, front_revision_img_url, front_revision, back_revision_img_url, back_revision, car_img_url_1, car_1, car_img_url_2, car_2, car_img_url_3, car_3, brand, year, color, plate);
-        res.status(200).json({
-            Response,
-        });
-        if (Number(Response.codigo === 1)) {
+        if (Response.codigo === 1) {
             console.log("Enviando correo a:", correo);
             yield (0, smtpService_1.sendVerificationEmail)(correo, verificationCode, Description);
             console.log("Correo enviado correctamente.");
         }
-        console.log(Response.codigo);
+        res.status(200).json({
+            success: true,
+            data: Response,
+        });
     }
     catch (error) {
-        console.log("Error con registro del conductor", error);
-        res.status(500).json({ message: 'Error con registro del conductor', error });
+        console.error("Error con registro del conductor", error);
+        res.status(500).json({
+            success: false,
+            message: 'Error con registro del conductor',
+            error: error.message || error,
+        });
     }
 });
 exports.RegisterDriver = RegisterDriver;

@@ -16,7 +16,7 @@ export class Driver {
     
         antecendetes_penales_img_url: string,
         antecendetes_penales: string,
-
+    
         front_license_img_url: string,
         front_license: string,
         back_license_img_url: string,
@@ -33,7 +33,7 @@ export class Driver {
         car_2: string,
         car_img_url_3: string,
         car_3: string,
-
+    
         brand: string,
         year: number,
         color: string,
@@ -50,10 +50,10 @@ export class Driver {
             p_user_type_id: user_type_id,
             p_verification_code: verification_code,
             p_url_profile_pic: url_profile_pic,
-
-            p_antecendetes_penales_img_url:antecendetes_penales_img_url,
+    
+            p_antecendetes_penales_img_url: antecendetes_penales_img_url,
             p_antecendetes_penales: antecendetes_penales,
-            // Nuevos parámetros de imágenes
+    
             p_front_license_img_url: front_license_img_url,
             p_front_license: front_license,
             p_back_license_img_url: back_license_img_url,
@@ -70,9 +70,9 @@ export class Driver {
             p_car_2: car_2,
             p_car_img_url_3: car_img_url_3,
             p_car_3: car_3,
-
+    
             p_brand: brand,
-            p_year: year, 
+            p_year: year,
             p_color: color,
             p_plate: plate
         });
@@ -81,12 +81,17 @@ export class Driver {
             throw new Error(`Error al registrar al conductor: ${error.message}`);
         }
     
+        if (!data) {
+            throw new Error(`No se recibió respuesta del servidor`);
+        }
+    
         return {
             codigo: data.code,
             mensaje: data.message,
             conductorRegistrado: data.registered_driver
         };
     }
+    
     
     static async getDriverTrips(driverId: number){
         const{data, error} = await supabase.rpc('p_get_driver_trips',{

@@ -80,8 +80,9 @@ export const RegisterDriver = async (req: Request, res: Response) => {
         color,
         plate
     } = req.body;
-    const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
+
     const verificationCode = generarCodigoAleatorio();
+    const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
 
     try {
         const Response = await Driver.RegisterDriver(
@@ -117,22 +118,26 @@ export const RegisterDriver = async (req: Request, res: Response) => {
             plate
         );
 
-        
-        res.status(200).json({
-            Response,
-        });
-
-        if(Number(Response.codigo ===1)){
+        if (Response.codigo === 1) {
             console.log("Enviando correo a:", correo);
             await sendVerificationEmail(correo, verificationCode, Description);
             console.log("Correo enviado correctamente.");
         }
-        console.log(Response.codigo)
+
+        res.status(200).json({
+            success: true,
+            data: Response,
+        });
     } catch (error: any) {
-        console.log("Error con registro del conductor", error);
-        res.status(500).json({ message: 'Error con registro del conductor', error });
+        console.error("Error con registro del conductor", error);
+        res.status(500).json({
+            success: false,
+            message: 'Error con registro del conductor',
+            error: error.message || error,
+        });
     }
 };
+
 
 export const getDriverTrips = async (req: Request, res: Response) => {
     try{
