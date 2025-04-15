@@ -9,4 +9,5 @@ const router = express_1.default.Router();
 router.post('/:user_id/new/route', User_controller_1.CreateRoute);
 router.get('/counteroffers/route/:id', User_controller_1.getCounteroffersUser);
 router.get('/counteroffer/:id', User_controller_1.getCounterofferDetail);
+router.post('/sign_up', User_controller_1.RegisterUser);
 exports.default = router;

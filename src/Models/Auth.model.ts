@@ -37,6 +37,27 @@ export class Auth {
             };
         };
 
+        if (data.code === 5) {
+            return {
+                code: 5,
+                message: "Estado pendiente para aceptar"
+            };
+        };
+
+        if (data.code === 6) {
+            return {
+                code: 6,
+                message: "Estado rechazado"
+            };
+        };
+
+        if (data.code === 7) {
+            return {
+                code: 7,
+                message: "Estado expulsado"
+            };
+        };
+
         if (!data || !data.user_id || !data.names || !data.email || !data.profile_img_url) {
             console.error("Error: Insufficient data to generate the token", data);
             return "Insufficient data to generate the token";

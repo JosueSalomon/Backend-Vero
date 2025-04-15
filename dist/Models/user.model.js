@@ -28,43 +28,14 @@ class User {
                 p_url_profile_pic: p_url_profile_pic,
                 p_verification_code: p_verification_code,
             });
-            if (!data) {
-                return "null";
-            }
-            if (data.code === 2) {
-                return {
-                    code: 2,
-                    message: "El email ya está registrado"
-                };
-            }
-            if (data.code === 7) {
-                return {
-                    code: 3,
-                    message: "El phone ya está registrado"
-                };
-            }
-            if (data.code === 3) {
-                return {
-                    code: 4,
-                    message: "Error: el usuario ya existe"
-                };
-            }
-            if (data.code === 4) {
-                return {
-                    code: 5,
-                    message: "Error en los datos proporcionados"
-                };
-            }
-            if (data.code === 1) {
-                return {
-                    code: 1,
-                    message: "usuario registrado con éxito",
-                    route: data.route
-                };
-            }
             if (error) {
-                throw error;
+                throw new Error(`Error al registrar al usuarii: ${error.message}`);
             }
+            return {
+                codigo: data.code,
+                mensaje: data.message,
+                usuarioRegistrado: data.registered_driver
+            };
         });
     }
     static CreateRoute(user_id, departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, id_days_array, departure_coordinate_x, departure_coordinate_y, arrival_coordinate_x, arrival_coordinate_y) {

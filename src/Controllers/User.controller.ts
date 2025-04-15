@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import {User} from '../Models/user.model'
+import { sendVerificationEmail } from '../services/smtpService';
+import { generarCodigoAleatorio } from './Driver.controller';
 
 export const CreateRoute = async (req: Request, res:Response) =>{
     const {user_id} = req.params;
@@ -74,4 +76,48 @@ export const getCounterofferDetail = async (req: Request, res: Response) => {
         console.log("Error con creacion de la ruta", error);
         res.status(500).json({ message: 'Error con creacion de la ruta', error });
     }
+}
+
+export const RegisterUser = async (req: Request, res: Response) => {    
+    const {
+        nombres,
+        apellidos,
+        dni,
+        telefono,
+        correo,
+        contrasena,
+        genero,
+        url_profile_pic,
+    } = req.body;
+    const Description = `¡Bienvenido a Vero! Nos alegra que quieras registrarte en nuestra plataforma. Para completar tu registro y asegurar tu identidad, es necesario ingresar el siguiente código de verificación. Si no realizaste esta solicitud, puedes ignorar este mensaje.`;
+    const verificationCode = generarCodigoAleatorio();
+    try {
+        const Response = await User.RegisterUser(
+            nombres,
+            apellidos,
+            dni,
+            telefono,
+            correo,
+            contrasena,
+            genero,
+            url_profile_pic,
+            verificationCode
+        );
+
+        
+        res.status(200).json({
+            Response,
+        });
+
+        if(Response.codigo ===1 ){
+            console.log("Enviando correo a:", correo);
+            await sendVerificationEmail(correo, verificationCode, Description);
+            console.log("Correo enviado correctamente.");
+        }
+
+    } catch (error: any) {
+        console.log("Error con registro del conductor", error);
+        res.status(500).json({ message: 'Error con registro del conductor', error });
+    }
+
 }

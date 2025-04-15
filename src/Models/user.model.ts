@@ -24,48 +24,15 @@ export class User{
             p_url_profile_pic: p_url_profile_pic,
             p_verification_code: p_verification_code,
         });
-        if (!data){
-            return "null";
+        if (error) {
+            throw new Error(`Error al registrar al usuarii: ${error.message}`);
         }
-        if(data.code===2){
-            return{
-                code: 2,
-                message: "El email ya está registrado"
-            };
-        }
-
-        if(data.code ===7){
-            return{
-                code: 3,
-                message: "El phone ya está registrado"
-            }
-        }
-
-        if(data.code ===3){
-            return{
-                code: 4,
-                message: "Error: el usuario ya existe"
-            }
-        }
-
-        if(data.code === 4){
-            return{
-                code: 5,
-                message: "Error en los datos proporcionados"
-            }
-        }
-
-        if(data.code ===1){
-            return{
-                code: 1,
-                message: "usuario registrado con éxito",
-                route: data.route
-            }
-        }
-
-        if(error){
-            throw error;
-        }
+    
+        return {
+            codigo: data.code,
+            mensaje: data.message,
+            usuarioRegistrado: data.registered_driver
+        };
     }
 
 
@@ -169,4 +136,5 @@ export class User{
         return data;
 
     }
+
 }
