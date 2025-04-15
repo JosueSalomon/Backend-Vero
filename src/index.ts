@@ -11,6 +11,7 @@ import authRoutes from './Routes/Auth.routes'
 import signupRoutes from './Routes/Sign.routes'
 import tripRoutes from './Routes/Trip.routes'
 import userRoutes from './Routes/user.routes'
+import administratorRoutes from './Routes/Administrator.routes'
 
 dotenv.config();
 require('dotenv').config();
@@ -27,7 +28,8 @@ app.use('/driver',conductorRouter);
 app.use('/auth', authRoutes);
 app.use('/sign', signupRoutes);
 app.use('/trip', tripRoutes);
-app.use('/user',userRoutes)
+app.use('/user',userRoutes);
+app.use('/administrator', administratorRoutes);
 
 // app.use('/producto', productoRouter);
 // app.use('/factura', facturaRouter)

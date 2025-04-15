@@ -245,4 +245,20 @@ export class Driver {
         return data;
 
     };
+
+    static async updateBankInformation(
+        userId: number,
+        bankInstitutionId: number,
+        bankAccountNumber: string
+    ){
+        const {data, error} = await supabase.rpc('p_update_bank_information',{
+            p_user_id: userId,
+            p_bank_institution_id: bankInstitutionId,
+            p_bank_account_number: bankAccountNumber
+        });
+        if(error){
+            throw error;
+        };
+        return data;
+    }
 }
