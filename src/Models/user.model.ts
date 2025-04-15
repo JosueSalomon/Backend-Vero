@@ -2,6 +2,73 @@ import supabase from '../Utils/supabase'
 
 
 export class User{
+    static async RegisterUser(
+        p_first_names: string,
+        p_last_names: string,
+        p_dni : string,
+        p_phone     : string,
+        p_email    : string,
+        p_password : string,
+        p_gender : string,
+        p_url_profile_pic : string,
+        p_verification_code : string,
+    ){
+        const {data,error} = await supabase.rpc('p_register_user',{
+            p_first_names: p_first_names,
+            p_last_names: p_last_names,
+            p_dni: p_dni,
+            p_phone: p_phone,
+            p_email: p_email,
+            p_password: p_password,
+            p_gender: p_gender,
+            p_url_profile_pic: p_url_profile_pic,
+            p_verification_code: p_verification_code,
+        });
+        if (!data){
+            return "null";
+        }
+        if(data.code===2){
+            return{
+                code: 2,
+                message: "El email ya está registrado"
+            };
+        }
+
+        if(data.code ===7){
+            return{
+                code: 3,
+                message: "El phone ya está registrado"
+            }
+        }
+
+        if(data.code ===3){
+            return{
+                code: 4,
+                message: "Error: el usuario ya existe"
+            }
+        }
+
+        if(data.code === 4){
+            return{
+                code: 5,
+                message: "Error en los datos proporcionados"
+            }
+        }
+
+        if(data.code ===1){
+            return{
+                code: 1,
+                message: "usuario registrado con éxito",
+                route: data.route
+            }
+        }
+
+        if(error){
+            throw error;
+        }
+    }
+
+
     static async CreateRoute(
         user_id: number , 
         departure_point: string,
@@ -13,8 +80,10 @@ export class User{
         comment: string,
         return_time: string,
         id_days_array: number[],
-        coordinate_x: number,
-        coordinate_y: number,){
+        departure_coordinate_x: number,
+        departure_coordinate_y: number,
+        arrival_coordinate_x: number,
+        arrival_coordinate_y: number,){
         const{data, error} = await supabase.rpc('p_create_route',{
             p_user_id: user_id,
             p_departure_point: departure_point,
@@ -26,8 +95,10 @@ export class User{
             p_comment: comment,
             p_return_time: return_time,
             p_days_id: id_days_array,
-            p_coordinate_x: coordinate_x,
-            p_coordinate_y: coordinate_y
+            p_departure_coordinate_x: departure_coordinate_x,
+            p_departure_coordinate_y: departure_coordinate_y,
+            p_arrival_coordinate_x: arrival_coordinate_x,
+            p_arrival_coordinate_y: arrival_coordinate_y,
         });
         if (!data){
             return "null";

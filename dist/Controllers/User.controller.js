@@ -13,10 +13,10 @@ exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRou
 const user_model_1 = require("../Models/user.model");
 const CreateRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { user_id } = req.params;
-    const { departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, coordinate_x, coordinate_y, days_id } = req.body;
+    const { departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, departure_coordinate_x, departure_coordinate_y, arrival_coordinate_x, arrival_coordinate_y, days_id } = req.body;
     try {
         console.log("User ID recibido:", user_id); // <-- Agregar esto
-        const Response = yield user_model_1.User.CreateRoute(Number(user_id), departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, days_id, coordinate_x, coordinate_y);
+        const Response = yield user_model_1.User.CreateRoute(Number(user_id), departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, days_id, departure_coordinate_x, departure_coordinate_y, arrival_coordinate_x, arrival_coordinate_y);
         res.status(200).json(Response);
     }
     catch (error) {

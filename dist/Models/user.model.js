@@ -15,7 +15,59 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const supabase_1 = __importDefault(require("../Utils/supabase"));
 class User {
-    static CreateRoute(user_id, departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, id_days_array, coordinate_x, coordinate_y) {
+    static RegisterUser(p_first_names, p_last_names, p_dni, p_phone, p_email, p_password, p_gender, p_url_profile_pic, p_verification_code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_register_user', {
+                p_first_names: p_first_names,
+                p_last_names: p_last_names,
+                p_dni: p_dni,
+                p_phone: p_phone,
+                p_email: p_email,
+                p_password: p_password,
+                p_gender: p_gender,
+                p_url_profile_pic: p_url_profile_pic,
+                p_verification_code: p_verification_code,
+            });
+            if (!data) {
+                return "null";
+            }
+            if (data.code === 2) {
+                return {
+                    code: 2,
+                    message: "El email ya está registrado"
+                };
+            }
+            if (data.code === 7) {
+                return {
+                    code: 3,
+                    message: "El phone ya está registrado"
+                };
+            }
+            if (data.code === 3) {
+                return {
+                    code: 4,
+                    message: "Error: el usuario ya existe"
+                };
+            }
+            if (data.code === 4) {
+                return {
+                    code: 5,
+                    message: "Error en los datos proporcionados"
+                };
+            }
+            if (data.code === 1) {
+                return {
+                    code: 1,
+                    message: "usuario registrado con éxito",
+                    route: data.route
+                };
+            }
+            if (error) {
+                throw error;
+            }
+        });
+    }
+    static CreateRoute(user_id, departure_point, arrival_point, departure_time, start_date, end_date, estimated_price, comment, return_time, id_days_array, departure_coordinate_x, departure_coordinate_y, arrival_coordinate_x, arrival_coordinate_y) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_create_route', {
                 p_user_id: user_id,
@@ -28,8 +80,10 @@ class User {
                 p_comment: comment,
                 p_return_time: return_time,
                 p_days_id: id_days_array,
-                p_coordinate_x: coordinate_x,
-                p_coordinate_y: coordinate_y
+                p_departure_coordinate_x: departure_coordinate_x,
+                p_departure_coordinate_y: departure_coordinate_y,
+                p_arrival_coordinate_x: arrival_coordinate_x,
+                p_arrival_coordinate_y: arrival_coordinate_y,
             });
             if (!data) {
                 return "null";
