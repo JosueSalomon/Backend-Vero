@@ -137,4 +137,46 @@ export class User{
 
     }
 
+
+    static async acceptRoute(route_id: number) {
+        const { data, error } = await supabase.rpc('p_accept_trip_user', {
+            p_route_id: route_id,
+        });
+    
+        if (error) {
+            console.error("Supabase RPC Error:", error);
+            throw error;
+        }
+    
+        if (!data) {
+            return {
+                code: -1,
+                message: "No se recibió respuesta del servidor"
+            };
+        }
+    
+        switch (data.code) {
+            case 0:
+                return {
+                    code: 1,
+                    message: "Viaje creado exitosamente"
+                };
+            case 3:
+                return {
+                    code: 3,
+                    message: "No se encontró contraoferta para la ruta"
+                };
+            case 5:
+                return {
+                    code: 5,
+                    message: "Error al aceptar el viaje"
+                };
+            default:
+                return {
+                    code: data.code,
+                    message: data.message || "Respuesta desconocida"
+                };
+        }
+    }
+
 }

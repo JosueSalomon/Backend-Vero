@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegisterUser = exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
+exports.AcceptTrip = exports.RegisterUser = exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
 const user_model_1 = require("../Models/user.model");
 const smtpService_1 = require("../services/smtpService");
 const Driver_controller_1 = require("./Driver.controller");
@@ -72,3 +72,19 @@ const RegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.RegisterUser = RegisterUser;
+const AcceptTrip = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const Response = yield user_model_1.User.acceptRoute(Number(id));
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        console.log("Error con AcceptRoute", error);
+        res.status(500).json({
+            message: 'Error con AcceptRoute', error
+        });
+    }
+});
+exports.AcceptTrip = AcceptTrip;
