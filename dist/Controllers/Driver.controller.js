@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBankInformation = exports.getDetailsRoute = exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.AcceptRoute = exports.updateBankInformation = exports.getDetailsRoute = exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
 exports.generarCodigoAleatorio = generarCodigoAleatorio;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
@@ -187,3 +187,20 @@ const updateBankInformation = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.updateBankInformation = updateBankInformation;
+const AcceptRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { route_id } = req.body;
+    try {
+        const Response = yield Driver_model_1.Driver.acceptRoute(route_id, Number(id));
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        console.log("Error con AcceptRoute", error);
+        res.status(500).json({
+            message: 'Error con AcceptRoute', error
+        });
+    }
+});
+exports.AcceptRoute = AcceptRoute;

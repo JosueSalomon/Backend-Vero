@@ -278,3 +278,26 @@ export const updateBankInformation = async (req: Request, res: Response) => {
         });
     }
 };
+
+
+export const AcceptRoute = async (req: Request, res: Response) => {
+    const {id} = req.params;
+    const {route_id} = req.body;
+    try {
+
+        const Response = await Driver.acceptRoute(
+            route_id,
+            Number(id),
+        );
+
+        res.status(200).json({
+            Response
+        })
+    }catch(error: any){
+        console.log("Error con AcceptRoute", error);
+        res.status(500).json({
+            message: 'Error con AcceptRoute', error
+        })
+    }
+
+}
