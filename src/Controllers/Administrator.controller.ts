@@ -69,3 +69,25 @@ export const updateDriverStatus = async (req: Request, res: Response) => {
         });
     }
 } 
+
+
+export const getRequestDriver = async (req: Request, res: Response) => {   
+    const {id} = req.params;
+    try{
+        const requestDriver = await Administrator.getRequestDriver(Number(id));
+        res.status(201).json({
+            requestDriver
+        })
+
+    }catch(error){
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    }
+}

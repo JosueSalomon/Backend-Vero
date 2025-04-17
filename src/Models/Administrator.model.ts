@@ -33,4 +33,16 @@ export class Administrator {
         };
         return data;
     }
+
+    static async getRequestDriver(
+        driverID: number
+    ){
+        const {data, error} = await supabase.rpc('p_request_detail',{
+            p_driver_id: driverID
+        })
+        if(error){
+            throw error;
+        }
+        return data;
+    }
 }

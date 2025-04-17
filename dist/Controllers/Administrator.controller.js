@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateDriverStatus = exports.getReportDetail = exports.getReports = void 0;
+exports.getRequestDriver = exports.updateDriverStatus = exports.getReportDetail = exports.getReports = void 0;
 const Administrator_model_1 = require("../Models/Administrator.model");
 const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -70,3 +70,23 @@ const updateDriverStatus = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.updateDriverStatus = updateDriverStatus;
+const getRequestDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const requestDriver = yield Administrator_model_1.Administrator.getRequestDriver(Number(id));
+        res.status(201).json({
+            requestDriver
+        });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.getRequestDriver = getRequestDriver;

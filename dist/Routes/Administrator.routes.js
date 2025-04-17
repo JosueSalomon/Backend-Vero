@@ -9,4 +9,5 @@ const router = express_1.default.Router();
 router.get("/reports", Administrator_controller_1.getReports);
 router.get("/report/:id", Administrator_controller_1.getReportDetail);
 router.put("/status/driver/update", Administrator_controller_1.updateDriverStatus);
+router.get("/request/:id", Administrator_controller_1.getRequestDriver);
 exports.default = router;
