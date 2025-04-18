@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { Administrator } from '../Models/Administrator.model'
 
 export const getReports = async (req: Request, res: Response) => {
@@ -144,6 +144,28 @@ export const get_commission_detail = async (req: Request, res: Response) => {
 export const drivers_to_pay = async (req: Request, res: Response) => {
     try{
         const Response = await Administrator.drivers_to_pay();
+
+        res.status(200).json({
+            Response
+        })
+    }catch(error){
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    }
+}
+
+
+export const get_drivers_applications = async (req: Request, res: Response) => {
+
+    try{
+        const Response = await Administrator.get_drivers_applications();
 
         res.status(200).json({
             Response

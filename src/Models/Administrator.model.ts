@@ -75,4 +75,12 @@ export class Administrator {
         }
         return data;
     }
+
+    static async get_drivers_applications(){
+        const {data, error} = await supabase.rpc('p_get_drivers_applications');
+        if(error){
+            throw error;
+        }
+        return data;
+    }
 }

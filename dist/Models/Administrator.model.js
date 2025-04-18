@@ -91,5 +91,14 @@ class Administrator {
             return data;
         });
     }
+    static get_drivers_applications() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_drivers_applications');
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.Administrator = Administrator;
