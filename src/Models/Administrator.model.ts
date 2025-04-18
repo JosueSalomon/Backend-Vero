@@ -45,4 +45,34 @@ export class Administrator {
         }
         return data;
     }
+
+    static async get_comissions_to_pay_for_driver(
+        id_driver: number 
+    ){
+        const {data, error} = await supabase.rpc('p_get_comissions_to_pay_for_driver',{
+            p_id_driver: id_driver
+        });
+        if(error){
+            throw error;
+        }
+        return data;    
+    }
+
+    static async get_commission_detail(id_comisiones_pagar: number){
+        const {data,error} = await supabase.rpc('p_get_comissions_to_pay_for_driver_by_id',{
+            p_id_comisiones_pagar: id_comisiones_pagar
+        })
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+
+    static async drivers_to_pay(){
+        const {data, error} = await supabase.rpc('p_drivers_to_pay');
+        if(error){
+            throw error;
+        }
+        return data;
+    }
 }

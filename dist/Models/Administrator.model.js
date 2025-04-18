@@ -60,5 +60,36 @@ class Administrator {
             return data;
         });
     }
+    static get_comissions_to_pay_for_driver(id_driver) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_comissions_to_pay_for_driver', {
+                p_id_driver: id_driver
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
+    static get_commission_detail(id_comisiones_pagar) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_comissions_to_pay_for_driver_by_id', {
+                p_id_comisiones_pagar: id_comisiones_pagar
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
+    static drivers_to_pay() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_drivers_to_pay');
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.Administrator = Administrator;

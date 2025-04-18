@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRequestDriver = exports.updateDriverStatus = exports.getReportDetail = exports.getReports = void 0;
+exports.drivers_to_pay = exports.get_commission_detail = exports.getComissionsToPayDriver = exports.getRequestDriver = exports.updateDriverStatus = exports.getReportDetail = exports.getReports = void 0;
 const Administrator_model_1 = require("../Models/Administrator.model");
 const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -90,3 +90,62 @@ const getRequestDriver = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getRequestDriver = getRequestDriver;
+const getComissionsToPayDriver = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const Response = yield Administrator_model_1.Administrator.get_comissions_to_pay_for_driver(Number(id));
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.getComissionsToPayDriver = getComissionsToPayDriver;
+const get_commission_detail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const Response = yield Administrator_model_1.Administrator.get_commission_detail(Number(id));
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.get_commission_detail = get_commission_detail;
+const drivers_to_pay = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const Response = yield Administrator_model_1.Administrator.drivers_to_pay();
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.drivers_to_pay = drivers_to_pay;

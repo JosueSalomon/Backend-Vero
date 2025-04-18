@@ -10,4 +10,7 @@ router.get("/reports", Administrator_controller_1.getReports);
 router.get("/report/:id", Administrator_controller_1.getReportDetail);
 router.put("/status/driver/update", Administrator_controller_1.updateDriverStatus);
 router.get("/request/:id", Administrator_controller_1.getRequestDriver);
+router.get("/comissions/driver/:id", Administrator_controller_1.getComissionsToPayDriver);
+router.get("/comission/:id", Administrator_controller_1.get_commission_detail);
+router.get("/drivers/pay", Administrator_controller_1.drivers_to_pay);
 exports.default = router;
