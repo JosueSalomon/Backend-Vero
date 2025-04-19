@@ -100,5 +100,28 @@ class Administrator {
             return data;
         });
     }
+    static register_payment_and_update_commission(id_comisiones_pagar, recibo_url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_save_history_payment', {
+                p_id_comisiones_pagar: id_comisiones_pagar,
+                p_url_reciet: recibo_url
+            });
+            if (error) {
+                throw error;
+            }
+            if (data.code === 1) {
+                return {
+                    message: 'Se guardo el registro de pago',
+                    code: 1
+                };
+            }
+            if (data.code = !1) {
+                return {
+                    message: 'error del servido',
+                    code: 2
+                };
+            }
+        });
+    }
 }
 exports.Administrator = Administrator;

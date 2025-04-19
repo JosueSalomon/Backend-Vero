@@ -83,4 +83,29 @@ export class Administrator {
         }
         return data;
     }
+
+    static async register_payment_and_update_commission(
+        id_comisiones_pagar: number,
+        recibo_url: string,
+    ){
+        const {data, error} = await supabase.rpc('p_save_history_payment',{
+            p_id_comisiones_pagar: id_comisiones_pagar,
+            p_url_reciet: recibo_url
+        });
+        if(error){
+            throw error;
+        }
+        if(data.code===1){
+            return {
+                message: 'Se guardo el registro de pago',
+                code:1
+            }
+        }
+        if(data.code=! 1){
+            return {
+                message: 'error del servido',
+                code:2
+            }
+        }
+    }
 }

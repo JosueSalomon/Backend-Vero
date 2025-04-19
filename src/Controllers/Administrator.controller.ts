@@ -182,3 +182,31 @@ export const get_drivers_applications = async (req: Request, res: Response) => {
         });
     }
 }
+
+
+export const register_payment_and_update_commission = async (req: Request, res: Response) => {  
+    const{id} = req.params;
+    const {url_reciet} = req.body
+
+    try{
+        const Response = await Administrator.register_payment_and_update_commission(
+            Number(id),
+            url_reciet
+        );
+
+        res.status(200).json({
+            Response
+        })
+    }catch(error){
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    }
+
+}
