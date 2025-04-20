@@ -9,4 +9,5 @@ const router = express_1.default.Router();
 router.get("/get/trips/:id", Trip_controller_1.getTripDetails);
 router.put("/:id/cancel/driver", Trip_controller_1.cancelTripFromDriver);
 router.post("/report", Trip_controller_1.reportTripUser);
+router.post("/:id/rate", Trip_controller_1.RateTrips);
 exports.default = router;

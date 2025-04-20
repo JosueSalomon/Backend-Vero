@@ -50,4 +50,18 @@ export class Trip {
         }
         return data;
     }
+
+
+    static async RateTrip(Rated_user_id: number, p_calification: number, p_trip_id: number,comment: string){
+        const{data, error} = await supabase.rpc('p_calificar',{
+            p_user_rated_id: Rated_user_id,
+            p_calificacion: p_calification,
+            p_trip_to_rate: p_trip_id,
+            p_comment: comment
+        });
+        if(error){
+            throw error;
+        }
+        return data;
+    }   
 }

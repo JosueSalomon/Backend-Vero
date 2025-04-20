@@ -57,5 +57,19 @@ class Trip {
             return data;
         });
     }
+    static RateTrip(Rated_user_id, p_calification, p_trip_id, comment) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_calificar', {
+                p_user_rated_id: Rated_user_id,
+                p_calificacion: p_calification,
+                p_trip_to_rate: p_trip_id,
+                p_comment: comment
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.Trip = Trip;

@@ -87,3 +87,26 @@ export const getTripDetails = async (req: Request, res: Response) => {
             });
         }
     };
+
+
+export const RateTrips = async (req: Request, res: Response) => {
+    const {id} = req.params;
+    const {user_Rating_id, calificacion, comment} = req.body;
+
+    try{
+        const Response = await Trip.RateTrip(user_Rating_id,calificacion, Number(id), comment);
+        res.status(201).json({
+            Response
+        })
+    }catch(error){
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    }
+}
