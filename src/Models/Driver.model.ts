@@ -310,11 +310,13 @@ export class Driver {
     }
 
     static async availableRoutes(
+        driverId: number,
         coordinateX: number,
         coordinateY: number
     ) {
 
         const {data, error} = await supabase.rpc('p_available_routes', {
+            p_driver_id: driverId,
             p_coordinate_x: coordinateX,
             p_coordinate_y: coordinateY
         });

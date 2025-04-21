@@ -304,10 +304,11 @@ export const AcceptRoute = async (req: Request, res: Response) => {
 
 export const getAvailableRoutes = async (req: Request, res: Response) => {
     try {
-        const {coordinateX,
+        const {driverId, coordinateX,
             coordinateY} = req.body;
 
-        const availableRoutes = await Driver.availableRoutes(coordinateX,
+        
+            const availableRoutes = await Driver.availableRoutes(driverId, coordinateX,
             coordinateY);
 
         res.status(200).json({availableRoutes});

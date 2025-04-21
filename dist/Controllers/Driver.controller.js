@@ -206,8 +206,8 @@ const AcceptRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.AcceptRoute = AcceptRoute;
 const getAvailableRoutes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { coordinateX, coordinateY } = req.body;
-        const availableRoutes = yield Driver_model_1.Driver.availableRoutes(coordinateX, coordinateY);
+        const { driverId, coordinateX, coordinateY } = req.body;
+        const availableRoutes = yield Driver_model_1.Driver.availableRoutes(driverId, coordinateX, coordinateY);
         res.status(200).json({ availableRoutes });
     }
     catch (error) {
