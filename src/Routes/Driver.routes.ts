@@ -10,6 +10,7 @@ import {
     getDetailsRoute,
     updateBankInformation,
     AcceptRoute,
+    getAvailableRoutes,
     getBanks
 } from "../Controllers/Driver.controller";
 
@@ -25,5 +26,6 @@ router.get("/:id",GetDriverById)
 router.get("/route/:id", getDetailsRoute);
 router.put("/bank/information/update", updateBankInformation);
 router.post("/:id/accept/route", AcceptRoute);
+router.get("/available/routes", getAvailableRoutes)
 router.get("/banks", getBanks);
 export default router;

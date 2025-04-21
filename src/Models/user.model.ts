@@ -112,10 +112,10 @@ export class User{
         }
     }
 
-    static async getCounteroffersUser (routeId: number){
+    static async getCounteroffersUser (userId: number){
         
         const{data,error} = await supabase.rpc('p_get_counteroffers_user',{
-            p_route_id: routeId
+            p_user_id: userId
         });
         if(error){
             throw error;
@@ -177,6 +177,16 @@ export class User{
                     message: data.message || "Respuesta desconocida"
                 };
         }
+    }
+
+    static async getRoutes (userId: number) {
+        const {data, error } = await supabase.rpc('p_get_routes', {
+            p_user_id: userId
+        });
+        if (error) {
+            throw error;
+        };
+        return data;
     }
 
 }

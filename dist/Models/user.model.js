@@ -95,10 +95,10 @@ class User {
             }
         });
     }
-    static getCounteroffersUser(routeId) {
+    static getCounteroffersUser(userId) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_get_counteroffers_user', {
-                p_route_id: routeId
+                p_user_id: userId
             });
             if (error) {
                 throw error;
@@ -154,6 +154,18 @@ class User {
                         message: data.message || "Respuesta desconocida"
                     };
             }
+        });
+    }
+    static getRoutes(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_routes', {
+                p_user_id: userId
+            });
+            if (error) {
+                throw error;
+            }
+            ;
+            return data;
         });
     }
 }
