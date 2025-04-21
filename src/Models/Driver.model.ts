@@ -34,7 +34,7 @@ export class Driver {
         car_3: string,
     
         brand: string,
-        year: number,
+        year: string,
         color: string,
         plate: string
     ) {
