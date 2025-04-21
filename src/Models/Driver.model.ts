@@ -327,11 +327,12 @@ export class Driver {
     }
     
 
-    static async getBanks(){
+    static async ObtenerBancos(){
         const {data, error} = await supabase.rpc('get_banks');
         if(error){
             throw error;
         }
         return data;
     }
+      
 }
