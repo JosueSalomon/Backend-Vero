@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AcceptTrip = exports.RegisterUser = exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
+exports.getRoutes = exports.AcceptTrip = exports.RegisterUser = exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
 const user_model_1 = require("../Models/user.model");
 const smtpService_1 = require("../services/smtpService");
 const Driver_controller_1 = require("./Driver.controller");
@@ -88,3 +88,17 @@ const AcceptTrip = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.AcceptTrip = AcceptTrip;
+const getRoutes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const routes = yield user_model_1.User.getRoutes(Number(id));
+        res.status(200).json({ routes });
+    }
+    catch (error) {
+        console.log("Error get routes", error);
+        res.status(500).json({
+            message: 'Error get routes', error
+        });
+    }
+});
+exports.getRoutes = getRoutes;

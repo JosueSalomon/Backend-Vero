@@ -140,3 +140,18 @@ export const AcceptTrip = async (req: Request, res: Response) => {
     }
 
 }
+
+export const getRoutes = async (req: Request, res: Response) => {
+    try {
+        const {id} = req.params;
+
+        const routes = await User.getRoutes(Number(id));
+
+        res.status(200).json({routes});
+    } catch (error) {
+        console.log("Error get routes", error);
+        res.status(500).json({
+            message: 'Error get routes', error
+        })
+    }
+}

@@ -3,7 +3,8 @@ import { CreateRoute,
             getCounteroffersUser,
             getCounterofferDetail,
             RegisterUser,
-            AcceptTrip
+            AcceptTrip,
+            getRoutes
 } from '../Controllers/User.controller';
 
 const router = express.Router();
@@ -12,5 +13,6 @@ router.get('/counteroffers/route/:id', getCounteroffersUser);
 router.get('/counteroffer/:id', getCounterofferDetail);
 router.post('/sign_up',RegisterUser);
 router.post('/accept/counteroffer/:id',AcceptTrip);
+router.get('/:id/routes', getRoutes);
 
 export default router;
