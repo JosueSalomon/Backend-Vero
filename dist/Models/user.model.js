@@ -120,7 +120,7 @@ class User {
     static acceptRoute(route_id) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_accept_trip_user', {
-                p_route_id: route_id,
+                p_counteroffer_id: route_id,
             });
             if (error) {
                 console.error("Supabase RPC Error:", error);

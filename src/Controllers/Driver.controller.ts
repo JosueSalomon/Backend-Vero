@@ -301,3 +301,23 @@ export const AcceptRoute = async (req: Request, res: Response) => {
     }
 
 }
+
+
+export const getBanks = async (req: Request, res: Response) => {
+    try {
+        const respuesta = await Driver.getBanks();
+        res.status(200).json({
+            respuesta
+        })
+    } catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    }
+}

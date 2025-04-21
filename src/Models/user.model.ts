@@ -140,7 +140,7 @@ export class User{
 
     static async acceptRoute(route_id: number) {
         const { data, error } = await supabase.rpc('p_accept_trip_user', {
-            p_route_id: route_id,
+            p_counteroffer_id: route_id,
         });
     
         if (error) {
