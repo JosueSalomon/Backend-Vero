@@ -91,8 +91,8 @@ exports.AcceptTrip = AcceptTrip;
 const getRoutes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const routes = yield user_model_1.User.getRoutes(Number(id));
-        res.status(200).json({ routes });
+        const data = yield user_model_1.User.getRoutes(Number(id));
+        res.status(200).json(data);
     }
     catch (error) {
         console.log("Error get routes", error);

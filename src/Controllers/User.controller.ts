@@ -145,9 +145,9 @@ export const getRoutes = async (req: Request, res: Response) => {
     try {
         const {id} = req.params;
 
-        const routes = await User.getRoutes(Number(id));
+        const data = await User.getRoutes(Number(id));
 
-        res.status(200).json({routes});
+        res.status(200).json(data);
     } catch (error) {
         console.log("Error get routes", error);
         res.status(500).json({
