@@ -250,5 +250,18 @@ class Driver {
             }
         });
     }
+    static availableRoutes(coordinateX, coordinateY) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_available_routes', {
+                p_coordinate_x: coordinateX,
+                p_coordinate_y: coordinateY
+            });
+            if (error) {
+                throw error;
+            }
+            ;
+            return data;
+        });
+    }
 }
 exports.Driver = Driver;
