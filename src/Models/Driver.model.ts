@@ -13,9 +13,8 @@ export class Driver {
         user_type_id: number,
         verification_code: string,
         url_profile_pic: string,
-    
-        antecendetes_penales_img_url: string,
-        antecendetes_penales: string,
+        p_antecendetes_penales_img_url: string,
+        p_antecendetes_penales: string,
     
         front_license_img_url: string,
         front_license: string,
@@ -50,9 +49,9 @@ export class Driver {
             p_user_type_id: user_type_id,
             p_verification_code: verification_code,
             p_url_profile_pic: url_profile_pic,
-    
-            p_antecendetes_penales_img_url: antecendetes_penales_img_url,
-            p_antecendetes_penales: antecendetes_penales,
+
+            p_antecendetes_penales_img_url: p_antecendetes_penales_img_url,
+            p_antecendetes_penales:p_antecendetes_penales,
     
             p_front_license_img_url: front_license_img_url,
             p_front_license: front_license,
@@ -93,6 +92,7 @@ export class Driver {
     }
     
     
+    
     static async getDriverTrips(driverId: number){
         const{data, error} = await supabase.rpc('p_get_driver_trips',{
             p_driver_id: driverId
@@ -107,7 +107,7 @@ export class Driver {
     static async CreateCouterOffer(
         driver_id: number,
         route_id: number,
-        counteroffer: string,
+        counteroffer: number,
         comment: string        
     ){
         const{data,error} = await supabase.rpc('p_create_counteroffers',{
