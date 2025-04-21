@@ -303,13 +303,14 @@ export const AcceptRoute = async (req: Request, res: Response) => {
 }
 
 
-export const getBanks = async (req: Request, res: Response) => {
-    try {
-        const respuesta = await Driver.getBanks();
+export const GetBanks = async (req: Request, res: Response) => {
+    try{
+        const Bancos = await Driver.ObtenerBancos();
+
         res.status(200).json({
-            respuesta
+            Bancos
         })
-    } catch (error) {
+    }catch(error){
         const errorInfo = error && typeof error === 'object'
             ? JSON.stringify(error, null, 2)
             : error?.toString() || 'Unknown error';
@@ -321,6 +322,9 @@ export const getBanks = async (req: Request, res: Response) => {
         });
     }
 }
+
+  
+  
 
 export const getAvailableRoutes = async (req: Request, res: Response) => {
     try {

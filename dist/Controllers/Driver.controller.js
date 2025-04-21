@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAvailableRoutes = exports.getBanks = exports.AcceptRoute = exports.updateBankInformation = exports.getDetailsRoute = exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
+exports.getAvailableRoutes = exports.GetBanks = exports.AcceptRoute = exports.updateBankInformation = exports.getDetailsRoute = exports.GetDriverById = exports.UpdateDriver = exports.CreateCounterOffers = exports.getDriverTrips = exports.RegisterDriver = exports.uploadImage = void 0;
 exports.generarCodigoAleatorio = generarCodigoAleatorio;
 const imageKitConfig_1 = __importDefault(require("../Utils/imageKitConfig"));
 const smtpService_1 = require("../services/smtpService");
@@ -204,11 +204,11 @@ const AcceptRoute = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.AcceptRoute = AcceptRoute;
-const getBanks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const GetBanks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const respuesta = yield Driver_model_1.Driver.getBanks();
+        const Bancos = yield Driver_model_1.Driver.ObtenerBancos();
         res.status(200).json({
-            respuesta
+            Bancos
         });
     }
     catch (error) {
@@ -222,7 +222,7 @@ const getBanks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-exports.getBanks = getBanks;
+exports.GetBanks = GetBanks;
 const getAvailableRoutes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { driverId, coordinateX, coordinateY } = req.body;

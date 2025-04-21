@@ -17,5 +17,5 @@ router.get("/route/:id", Driver_controller_1.getDetailsRoute);
 router.put("/bank/information/update", Driver_controller_1.updateBankInformation);
 router.post("/:id/accept/route", Driver_controller_1.AcceptRoute);
 router.get("/available/routes", Driver_controller_1.getAvailableRoutes);
-router.get("/banks", Driver_controller_1.getBanks);
+router.post("/banks", Driver_controller_1.GetBanks);
 exports.default = router;

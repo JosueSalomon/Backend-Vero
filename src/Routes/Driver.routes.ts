@@ -11,7 +11,7 @@ import {
     updateBankInformation,
     AcceptRoute,
     getAvailableRoutes,
-    getBanks
+    GetBanks
 } from "../Controllers/Driver.controller";
 
 const router = express.Router();
@@ -27,5 +27,6 @@ router.get("/route/:id", getDetailsRoute);
 router.put("/bank/information/update", updateBankInformation);
 router.post("/:id/accept/route", AcceptRoute);
 router.get("/available/routes", getAvailableRoutes)
-router.get("/banks", getBanks);
+router.post("/banks",GetBanks)
+
 export default router;

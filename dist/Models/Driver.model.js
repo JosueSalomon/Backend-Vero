@@ -264,7 +264,7 @@ class Driver {
             return data;
         });
     }
-    static getBanks() {
+    static ObtenerBancos() {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('get_banks');
             if (error) {
