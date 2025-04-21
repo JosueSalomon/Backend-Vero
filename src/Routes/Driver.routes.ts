@@ -9,7 +9,8 @@ import {
     GetDriverById,
     getDetailsRoute,
     updateBankInformation,
-    AcceptRoute
+    AcceptRoute,
+    getAvailableRoutes
 } from "../Controllers/Driver.controller";
 
 const router = express.Router();
@@ -24,4 +25,5 @@ router.get("/:id",GetDriverById)
 router.get("/route/:id", getDetailsRoute);
 router.put("/bank/information/update", updateBankInformation);
 router.post("/:id/accept/route", AcceptRoute);
+router.get("/available/routes", getAvailableRoutes)
 export default router;

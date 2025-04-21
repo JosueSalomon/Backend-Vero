@@ -301,3 +301,25 @@ export const AcceptRoute = async (req: Request, res: Response) => {
     }
 
 }
+
+export const getAvailableRoutes = async (req: Request, res: Response) => {
+    try {
+        const {coordinateX,
+            coordinateY} = req.body;
+
+        const availableRoutes = await Driver.availableRoutes(coordinateX,
+            coordinateY);
+
+        res.status(200).json({availableRoutes});
+    } catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    };
+};

@@ -308,6 +308,21 @@ export class Driver {
                 };
         }
     }
+
+    static async availableRoutes(
+        coordinateX: number,
+        coordinateY: number
+    ) {
+
+        const {data, error} = await supabase.rpc('p_available_routes', {
+            p_coordinate_x: coordinateX,
+            p_coordinate_y: coordinateY
+        });
+        if (error) {
+            throw error;
+        };
+        return data;
+    }
     
 
 }
