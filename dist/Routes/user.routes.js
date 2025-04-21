@@ -12,4 +12,5 @@ router.get('/counteroffer/:id', User_controller_1.getCounterofferDetail);
 router.post('/sign_up', User_controller_1.RegisterUser);
 router.post('/accept/counteroffer/:id', User_controller_1.AcceptTrip);
 router.get('/:id/routes', User_controller_1.getRoutes);
+router.get('/routes/:id', User_controller_1.getUserTripDetail);
 exports.default = router;

@@ -4,7 +4,8 @@ import { CreateRoute,
             getCounterofferDetail,
             RegisterUser,
             AcceptTrip,
-            getRoutes
+            getRoutes,
+            getUserTripDetail
 } from '../Controllers/User.controller';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/counteroffer/:id', getCounterofferDetail);
 router.post('/sign_up',RegisterUser);
 router.post('/accept/counteroffer/:id',AcceptTrip);
 router.get('/:id/routes', getRoutes);
+router.get('/routes/:id', getUserTripDetail);
 
 export default router;

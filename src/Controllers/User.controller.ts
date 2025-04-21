@@ -73,8 +73,8 @@ export const getCounterofferDetail = async (req: Request, res: Response) => {
         res.status(200).json(data);
 
     } catch (error) {
-        console.log("Error con creacion de la ruta", error);
-        res.status(500).json({ message: 'Error con creacion de la ruta', error });
+        console.log("Error", error);
+        res.status(500).json({ message: 'Error', error });
     }
 }
 
@@ -152,6 +152,21 @@ export const getRoutes = async (req: Request, res: Response) => {
         console.log("Error get routes", error);
         res.status(500).json({
             message: 'Error get routes', error
-        })
-    }
-}
+        });
+    };
+};
+
+export const getUserTripDetail = async (req: Request, res: Response) => {
+    try {
+        
+        const {id} = req.params;
+
+        const data = await User.getUserTripDetail(Number(id));
+
+        res.status(200).json(data);
+
+    } catch (error) {
+        console.log("Error con obtener detalles de ruta", error);
+        res.status(500).json({ message: 'Error con obtener detalles de ruta', error });
+    };
+};
