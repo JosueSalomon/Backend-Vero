@@ -166,13 +166,16 @@ export class Driver {
         driver_id: number,
         phone: string,
         email: string,
+        p_bank_number: string,
+        p_bank_id: number
 
     ){
         const{data,error} = await supabase.rpc('p_edit_person',{
             p_driver_id: driver_id,
             p_phone: phone,
             p_email: email,
-
+            p_bank_number:p_bank_number,
+            p_bank_id: p_bank_id
     });
     if (!data){
         return "null";
@@ -217,7 +220,6 @@ export class Driver {
         return{
             code: 1,
             message: "Actualizacion con exito",
-            route: data.updated_driver
         }
     }
 

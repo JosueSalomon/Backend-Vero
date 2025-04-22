@@ -193,14 +193,17 @@ export const UpdateDriver = async (req: Request, res: Response) =>{
     const {
         phone,
         email,
-        url_photo
+        url_photo,
+        id_bank,
+        bank_number
     } = req.body
 
     try{
         const Response = await Driver.UpdateDriver(
             Number(id),
             phone,
-            email,)
+            email,bank_number,id_bank
+        )
 
         res.status(200).json({
             Response

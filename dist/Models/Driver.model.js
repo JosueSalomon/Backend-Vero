@@ -121,12 +121,14 @@ class Driver {
             }
         });
     }
-    static UpdateDriver(driver_id, phone, email) {
+    static UpdateDriver(driver_id, phone, email, p_bank_number, p_bank_id) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data, error } = yield supabase_1.default.rpc('p_edit_person', {
                 p_driver_id: driver_id,
                 p_phone: phone,
                 p_email: email,
+                p_bank_number: p_bank_number,
+                p_bank_id: p_bank_id
             });
             if (!data) {
                 return "null";
@@ -165,7 +167,6 @@ class Driver {
                 return {
                     code: 1,
                     message: "Actualizacion con exito",
-                    route: data.updated_driver
                 };
             }
             if (error) {
