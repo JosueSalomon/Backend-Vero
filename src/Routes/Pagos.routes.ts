@@ -12,7 +12,7 @@ router.post('/create', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/get/:tripId', async (req: Request, res: Response) => {
+router.get('/get/:tripId/:amount', async (req: Request, res: Response) => {
     try {
     await executePayment(req, res);
     } catch (error) {

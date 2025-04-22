@@ -23,7 +23,7 @@ router.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).send("Error en el pago");
     }
 }));
-router.get('/get/:tripId', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/get/:tripId/:amount', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, Pagos_controller_1.executePayment)(req, res);
     }

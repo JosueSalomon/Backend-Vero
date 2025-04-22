@@ -61,7 +61,7 @@ const createPayment = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 brand_name: 'Vero',
                 landing_page: 'NO_PREFERENCE',
                 user_action: 'PAY_NOW',
-                return_url: `https://backend-vero.vercel.app/payment/get/${tripId}`,
+                return_url: `https://backend-vero.vercel.app/payment/get/${tripId}/${amount}`,
                 cancel_url: 'https://vero-6qby.vercel.app/'
             }
         };
@@ -88,6 +88,7 @@ exports.createPayment = createPayment;
 // Capturar el dinero del pago
 const executePayment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tripIdp = Number(req.params.tripId);
+    const amountp = Number(req.params.amount);
     const token = req.query.token;
     if (!token) {
         return res.status(400).json({ error: 'Token de orden no proporcionado' });
@@ -102,7 +103,7 @@ const executePayment = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const paymentData = response.data;
         const paypalOrder = paymentData.id;
         const statusPayment = paymentData.status;
-        const info = yield Pagos_model_1.Pagos.executePayment(tripIdp, 5000, paypalOrder, statusPayment);
+        const info = yield Pagos_model_1.Pagos.executePayment(tripIdp, amountp, paypalOrder, statusPayment);
         if (!info) {
             throw new Error('No se pudo guardar la información del pago en la base de datos');
         }

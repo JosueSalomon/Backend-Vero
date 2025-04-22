@@ -57,7 +57,7 @@ export const createPayment = async (req: Request, res: Response) => {
             brand_name: 'Vero',
             landing_page: 'NO_PREFERENCE',
             user_action: 'PAY_NOW',
-            return_url: `https://backend-vero.vercel.app/payment/get/${tripId}`,
+            return_url: `https://backend-vero.vercel.app/payment/get/${tripId}/${amount}`,
             cancel_url: 'https://vero-6qby.vercel.app/'
         }
     };
@@ -89,6 +89,7 @@ export const createPayment = async (req: Request, res: Response) => {
 // Capturar el dinero del pago
 export const executePayment = async (req: Request, res: Response) => {
     const tripIdp = Number(req.params.tripId);
+    const amountp = Number(req.params.amount);
     const token = req.query.token;
     
     if (!token) {
@@ -113,7 +114,7 @@ export const executePayment = async (req: Request, res: Response) => {
 
         const info = await Pagos.executePayment(
             tripIdp,
-            5000,
+            amountp,
             paypalOrder,
             statusPayment
         );
