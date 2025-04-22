@@ -108,4 +108,16 @@ export class Administrator {
             }
         }
     }
+
+
+    static async updateReport(reportID: number, idStatus: number){
+        const {data, error} = await supabase.rpc('p_update_report',{
+            p_report_id: reportID,
+            p_new_status: idStatus
+    })
+    if(error){
+        throw error;
+    }
+    return data;
+    }
 }

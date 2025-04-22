@@ -123,5 +123,17 @@ class Administrator {
             }
         });
     }
+    static updateReport(reportID, idStatus) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_update_report', {
+                p_report_id: reportID,
+                p_new_status: idStatus
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.Administrator = Administrator;

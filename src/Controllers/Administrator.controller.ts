@@ -210,3 +210,27 @@ export const register_payment_and_update_commission = async (req: Request, res: 
     }
 
 }
+
+
+export const updateReport = async (req: Request, res: Response) => {
+    const {id} = req.params
+    const {id_status} = req.body
+
+    try{
+        const Response = await Administrator.updateReport(Number(id),id_status)
+
+        res.status(200).json({
+            Response
+        })
+    }catch(error){
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : error?.toString() || 'Unknown error';
+
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ', 
+            error: errorInfo
+        });
+    }
+}

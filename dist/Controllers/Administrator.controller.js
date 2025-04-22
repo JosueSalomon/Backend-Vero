@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.register_payment_and_update_commission = exports.get_drivers_applications = exports.drivers_to_pay = exports.get_commission_detail = exports.getComissionsToPayDriver = exports.getRequestDriver = exports.updateDriverStatus = exports.getReportDetail = exports.getReports = void 0;
+exports.updateReport = exports.register_payment_and_update_commission = exports.get_drivers_applications = exports.drivers_to_pay = exports.get_commission_detail = exports.getComissionsToPayDriver = exports.getRequestDriver = exports.updateDriverStatus = exports.getReportDetail = exports.getReports = void 0;
 const Administrator_model_1 = require("../Models/Administrator.model");
 const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -189,3 +189,24 @@ const register_payment_and_update_commission = (req, res) => __awaiter(void 0, v
     }
 });
 exports.register_payment_and_update_commission = register_payment_and_update_commission;
+const updateReport = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { id_status } = req.body;
+    try {
+        const Response = yield Administrator_model_1.Administrator.updateReport(Number(id), id_status);
+        res.status(200).json({
+            Response
+        });
+    }
+    catch (error) {
+        const errorInfo = error && typeof error === 'object'
+            ? JSON.stringify(error, null, 2)
+            : (error === null || error === void 0 ? void 0 : error.toString()) || 'Unknown error';
+        console.error('Error Information: ', errorInfo);
+        res.status(500).json({
+            message: 'Error Information: ',
+            error: errorInfo
+        });
+    }
+});
+exports.updateReport = updateReport;

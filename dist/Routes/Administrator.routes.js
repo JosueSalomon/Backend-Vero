@@ -15,4 +15,5 @@ router.get("/comission/:id", Administrator_controller_1.get_commission_detail);
 router.get("/drivers/pay", Administrator_controller_1.drivers_to_pay);
 router.get("/drivers/applications", Administrator_controller_1.get_drivers_applications);
 router.post('/save/payment/commision/:id', Administrator_controller_1.register_payment_and_update_commission);
+router.put('/update/report/:id', Administrator_controller_1.updateReport);
 exports.default = router;
