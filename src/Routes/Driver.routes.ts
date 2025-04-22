@@ -26,7 +26,7 @@ router.get("/:id",GetDriverById)
 router.get("/route/:id", getDetailsRoute);
 router.put("/bank/information/update", updateBankInformation);
 router.post("/:id/accept/route", AcceptRoute);
-router.get("/available/routes", getAvailableRoutes)
+router.post("/available/routes", getAvailableRoutes)
 router.post("/banks",GetBanks)
 
 export default router;
