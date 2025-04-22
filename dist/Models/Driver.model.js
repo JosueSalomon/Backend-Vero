@@ -230,7 +230,7 @@ class Driver {
                 case 0:
                     return {
                         code: 1,
-                        message: "Viaje creado exitosamente"
+                        message: "Has aceptado la oferta del cliente, espera su confirmacion "
                     };
                 case 3:
                     return {
@@ -240,7 +240,7 @@ class Driver {
                 case 5:
                     return {
                         code: 5,
-                        message: "Error al crear el viaje"
+                        message: "Error al aceptar oferta"
                     };
                 default:
                     return {
