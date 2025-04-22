@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRoutes = exports.AcceptTrip = exports.RegisterUser = exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
+exports.getUserTripDetail = exports.getRoutes = exports.AcceptTrip = exports.RegisterUser = exports.getCounterofferDetail = exports.getCounteroffersUser = exports.CreateRoute = void 0;
 const user_model_1 = require("../Models/user.model");
 const smtpService_1 = require("../services/smtpService");
 const Driver_controller_1 = require("./Driver.controller");
@@ -46,8 +46,8 @@ const getCounterofferDetail = (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(200).json(data);
     }
     catch (error) {
-        console.log("Error con creacion de la ruta", error);
-        res.status(500).json({ message: 'Error con creacion de la ruta', error });
+        console.log("Error", error);
+        res.status(500).json({ message: 'Error', error });
     }
 });
 exports.getCounterofferDetail = getCounterofferDetail;
@@ -91,8 +91,8 @@ exports.AcceptTrip = AcceptTrip;
 const getRoutes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const routes = yield user_model_1.User.getRoutes(Number(id));
-        res.status(200).json({ routes });
+        const data = yield user_model_1.User.getRoutes(Number(id));
+        res.status(200).json(data);
     }
     catch (error) {
         console.log("Error get routes", error);
@@ -100,5 +100,19 @@ const getRoutes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             message: 'Error get routes', error
         });
     }
+    ;
 });
 exports.getRoutes = getRoutes;
+const getUserTripDetail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const data = yield user_model_1.User.getUserTripDetail(Number(id));
+        res.status(200).json(data);
+    }
+    catch (error) {
+        console.log("Error con obtener detalles de ruta", error);
+        res.status(500).json({ message: 'Error con obtener detalles de ruta', error });
+    }
+    ;
+});
+exports.getUserTripDetail = getUserTripDetail;

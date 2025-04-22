@@ -189,4 +189,18 @@ export class User{
         return data;
     }
 
+    static async getUserTripDetail (routeId: number) {
+        
+        const {data, error} = await supabase.rpc('p_get_user_trip_detail',{
+            p_route_id: routeId
+        });
+
+        if(error){
+            throw error;
+        }
+
+        return data;
+
+    }
+
 }

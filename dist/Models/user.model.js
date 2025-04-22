@@ -168,5 +168,16 @@ class User {
             return data;
         });
     }
+    static getUserTripDetail(routeId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data, error } = yield supabase_1.default.rpc('p_get_user_trip_detail', {
+                p_route_id: routeId
+            });
+            if (error) {
+                throw error;
+            }
+            return data;
+        });
+    }
 }
 exports.User = User;
