@@ -62,7 +62,7 @@ const createPayment = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 landing_page: 'NO_PREFERENCE',
                 user_action: 'PAY_NOW',
                 return_url: `https://backend-vero.vercel.app/payment/get/${tripId}/${amount}`,
-                cancel_url: 'http://vero-6qby.vercel.app/journey/myroutes'
+                cancel_url: 'https://vero-6qby.vercel.app/journey/myroutes'
             }
         };
         const response = yield axios_1.default.post(`${process.env.PAYPAL_API}/v2/checkout/orders`, body, {
@@ -108,7 +108,7 @@ const executePayment = (req, res) => __awaiter(void 0, void 0, void 0, function*
             throw new Error('No se pudo guardar la información del pago en la base de datos');
         }
         //hola
-        res.redirect('http://vero-6qby.vercel.app/journey/myroutes');
+        res.redirect('https://vero-6qby.vercel.app/journey/');
     }
     catch (error) {
         const errorInfo = error && typeof error === 'object'
