@@ -19,8 +19,8 @@ exports.transporter = nodemailer_1.default.createTransport({
     port: 465,
     secure: true, // true for port 465, false for other ports
     auth: {
-        user: "stephanymatamoros4@gmail.com",
-        pass: "ccjt dnbg ohjr fjxp",
+        user: "",
+        pass: "",
     },
 });
 const sendVerificationEmail = (to, code, description) => __awaiter(void 0, void 0, void 0, function* () {

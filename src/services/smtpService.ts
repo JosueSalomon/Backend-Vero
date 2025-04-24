@@ -6,8 +6,8 @@ export const transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // true for port 465, false for other ports
     auth: {
-      user: "stephanymatamoros4@gmail.com",
-      pass: "ccjt dnbg ohjr fjxp",
+      user: "",
+      pass: "",
     },
   });
 export const sendVerificationEmail = async (to: string, code: string, description: string): Promise<void> => {
