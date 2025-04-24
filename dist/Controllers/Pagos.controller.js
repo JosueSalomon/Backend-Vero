@@ -108,7 +108,7 @@ const executePayment = (req, res) => __awaiter(void 0, void 0, void 0, function*
             throw new Error('No se pudo guardar la información del pago en la base de datos');
         }
         //hola
-        res.redirect('https://vero-6qby.vercel.app/journey/myroutes');
+        res.redirect('https://vero-6qby.vercel.app/journey/');
     }
     catch (error) {
         const errorInfo = error && typeof error === 'object'
