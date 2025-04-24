@@ -1,15 +1,15 @@
 import nodemailer from 'nodemailer';
 
 
-const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
-    secure: false,
+export const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // true for port 465, false for other ports
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+      user: "stephanymatamoros4@gmail.com",
+      pass: "ccjt dnbg ohjr fjxp",
     },
-});
+  });
 export const sendVerificationEmail = async (to: string, code: string, description: string): Promise<void> => {
     try {
         const info = await transporter.sendMail({
@@ -25,7 +25,7 @@ export const sendVerificationEmail = async (to: string, code: string, descriptio
                                     <tr>
                                         <td style="background-color: #4785f7; text-align: center; padding: 30px 20px;">
                                             <div style="width: 60px; height: 60px; border-radius: 50%; background-color: #ffffff; display: inline-block; margin: 0 auto 15px; text-align: center; line-height: 60px;">
-                                                <img src="https://ik.imagekit.io/zvju4sp4d/Vero/fondo1.svg?updatedAt=1742177040639" alt="Logo" style="width: 40px; height: 40px; vertical-align: middle; opacity: 0.8;">
+                                                <img src="https://ik.imagekit.io/diancrochet/Imagen%20de%20WhatsApp%202025-04-23%20a%20las%2020.17.11_79f7e209.jpg" alt="Logo" style="width: 40px; height: 40px; vertical-align: middle; opacity: 0.8;">
                                             </div>
                                             <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold;">Código de Verificación</h1>
                                         </td>
